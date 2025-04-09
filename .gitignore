@@ -1,0 +1,8 @@
+# dictates what files are uploaded and wahat files are pushed
+
+# ignores all files
+*
+
+# makes an exception jupyter notebook files and the git ignore file
+!*.ipynb
+!.gitignore
