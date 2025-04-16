@@ -5,4 +5,7 @@
 
 # makes an exception jupyter notebook files and the git ignore file
 !*.ipynb
+!*.pdf
+!*.tex
+!*.sty
 !.gitignore
