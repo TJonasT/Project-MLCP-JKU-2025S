@@ -1,0 +1,19 @@
+# dictates what files are uploaded and what files are pushed
+
+# ignores all files
+*
+
+# makes an exception 
+#  - text files (notice), 
+#  - tex files, 
+#  - jupyter notebook files and 
+#  - the git ignore file
+!*.txt
+
+!*.tex
+!*.sty
+!*.pdf
+
+!*.ipynb
+
+!.gitignore
