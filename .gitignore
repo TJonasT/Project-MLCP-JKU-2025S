@@ -1,19 +1,25 @@
 # dictates what files are uploaded and what files are pushed
 
-# ignores all files
-*
+# ignores all files in the following folders
+/.git
+
+/2_data_exploration/.ipynb_checkpoints
+/2_data_exploration/MLPC2025_dataset
+/2_data_exploration/report/
+
 
 # makes an exception 
 #  - text files (notice), 
-#  - tex files, 
-#  - jupyter notebook files and 
-#  - the git ignore file
 !*.txt
+!*.md
 
-!*.tex
-!*.sty
-!*.pdf
+#  - tex files, 
+!/2_data_exploration/report/*.tex
+!/2_data_exploration/report/*.sty
+!/2_data_exploration/report/*.pdf
 
+#  - jupyter notebook files and 
 !*.ipynb
 
+#  - the git ignore file
 !.gitignore
