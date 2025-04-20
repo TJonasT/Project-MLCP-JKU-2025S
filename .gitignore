@@ -2,6 +2,7 @@
 
 # ignores all files in the following folders
 /.git
+/.idea
 
 /2_data_exploration/.ipynb_checkpoints
 /2_data_exploration/MLPC2025_dataset
