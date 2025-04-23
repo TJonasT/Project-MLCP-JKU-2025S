@@ -6,7 +6,7 @@
 
 /2_data_exploration/.ipynb_checkpoints
 /2_data_exploration/MLPC2025_dataset
-/2_data_exploration/report/
+#/2_data_exploration/report/
 
 
 # makes an exception 
@@ -15,9 +15,9 @@
 !*.md
 
 #  - tex files, 
-!/2_data_exploration/report/*.tex
-!/2_data_exploration/report/*.sty
-!/2_data_exploration/report/*.pdf
+#!/2_data_exploration/report/*.tex
+#!/2_data_exploration/report/*.sty
+#!/2_data_exploration/report/*.pdf
 
 #  - jupyter notebook files and 
 !*.ipynb
