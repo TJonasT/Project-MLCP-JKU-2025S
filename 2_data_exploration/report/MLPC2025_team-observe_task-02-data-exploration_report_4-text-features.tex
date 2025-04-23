@@ -1,20 +1,38 @@
-
+\newpage
 \section{Text Features}
 \label{sec:Text Features}
-\lipsum[4]
+
 
 \subsection{Cluster the text features. Can you find meaningful clusters?}
 \label{sec:Text Features:a}
+To identify meaningful clusters in the annotation text feature space, several dimensionality reduction and clustering strategies were tested. The best results were achieved by first applying t-SNE with a perplexity of 100 to the dataset. This produced visually distinct and well-separated groups. \\
+Following dimensionality reduction, K-Means clustering was applied to the 2D t-SNE output, yielding 24 clusters. To evaluate the quality of these clusters, the most common words in each cluster were analyzed. Clusters dominated by a few semantically consistent keywords (e.g., "dog", "bark", "puppy") were considered well defined., while clusters with a wide range of unrelated terms were considered less consistent. \\
+Overall, most clusters represented one or two distinct topics, indicating that the annotation embeddings were highly clusterable. For example, insect sounds, bad weather and cat noises were each grouped into their own unique clusters, showing semantic similarity through spatial proximity in the feature space.
 
 
 \subsection{Design a labeling function1 for classes dog and cat. Do the annotations labeled as dog or cat sounds
 form tight clusters in the text and audio feature space?}
 \label{sec:Text Features:b}
 
+To evaluate whether semantically similar annotations form tight clusters, labeling functions were created using keyword matching, similar to the ones introduced in the lecture. Simple rule based filters were used to identify dog and cat sounds. These functions relied on a small set of keywords:\\
+Dog: "dog", "bark", "puppy", "growling"\\
+Cat: "cat", "kitten", "meow", "purr"\\
+These functions proved very accurate, identifying large numbers of relevant samples with minimal false positives across the board. The cat related samples clustered almost entirely within a single cluster (cluster 4), showing high cluster purity. Dog related samples appeared primarily in two clusters (clusters 18 and cluster 21), which were spatially adjacent in the 2D projection, indicating that the clustering identified a connection between those clusters even if they were not clustered together.
+These results demonstrate that the text embedding and clustering approach captured meaningful semantic structure in the data, clustering annotations labeled cat or dog sounds closely.
+
 
 \subsection{How well do the audio feature clusters align with text clusters?}
 \label{sec:Text Features:c}
 
+
+To explore the relationship between text based and audio based clusters, the cluster assignments from the text features were overlaid with those from the audio features. The goal was to determine whether semantically grouped annotations also clustered similarly based on their audio characteristics.\\
+The results varied depending on the specific. For example, cat related samples appeared almost entirely within a single audio cluster. In contrast, other text based clusters, such as musical instruments, were distributed across multiple audio clusters.\\
+This discrepancy can be explained by the fundamental difference between the two feature spaces.The text embedding reflects semantic meaning, while the audio embeddings reflect sound similarity. For instance, the sound of a drone and a violin are acoustically similar (sometimes even mistaken for one another by humans as seen in point one) but they are semantically distinct. As a result, they may cluster together in the audio space but remain separated in the text space.\\
+Overall there is still a high degree of alignment between many clusters across both clustered embeddings, showing that text and audio aligns to a substantial degree.
+
+
+
+\newpage
 
 
 
