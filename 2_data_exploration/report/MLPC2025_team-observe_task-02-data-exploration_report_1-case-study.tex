@@ -4,11 +4,23 @@
 
 To find 2 interesting records that were edited by multiple annotators, 
 we first looked in ``metadata.csv'' to see which files had more than one annotator. 
-This resulted in a list of 149 files. 
-We then looked at the ``metadata_title_embeddings.npz'' and the ``metadata_keywords_embeddings.npz'' in order to be able to draw some conclusions. 
+This resulted in a list of 149 files. \\
+We then looked at the ``metadata\_title\_embeddings.npz'' and the ``metadata\_keywords\_embeddings.npz'' in order 
+to be able to draw some conclusions. 
 At the same time, we also checked the standardization of the embedding. 
+
 The approach was that files with very clear embedding (target: 1.0 in one place) lead to very clear annotations. 
-An important assumption here is the correctness and accuracy of the titles and keywords. 
+However, this did not produce any useful results. \\
+
+An important assumption here is the correctness and accuracy of the titles and keywords. \\
+
+
+The next approach used the file ``annotations.csv'' and the corresponding ``annotations\_text\_embeddings.npz''. 
+All annotations with more than one annotator were searched for. 
+This resulted in a list of 731 annotations and 1468 annotations in total. There were 6 files with 3 annotations each. \\
+
+From the associated text embeddings, we compared all embeddings of an annotator and an annotation with all other annotators by distance and subsequently removed 2 files.
+The file with the largest deviation is '568273.mp3' and the file with the smallest deviation is '203149.mp3'.
 
 
 \subsection{Identify similarities or differences between temporal and textual annotations from different annotators.}
