@@ -23,6 +23,11 @@
 \usepackage{xcolor}         % colors
 \usepackage{graphicx}       % graphics
 
+\renewcommand{\thesection}{\arabic{section}.)}
+\renewcommand{\thesubsection}{\alph{subsection}.)}
+
+
+
 \begin{document}
 
 
@@ -38,7 +43,7 @@ As a method to extract the most important audio features, PCA was chosen.
 
 The first step was to flatten them into a single array to make them usable for PCA. Using flattened data, the goal was to reach a cumulative explained variance of 95\%.
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth]{Cumulative Explained Variance.png}
     \caption{Cumulative Explained Variance using PCA on the audio features}
@@ -70,7 +75,7 @@ between. }
 First the unimportant features are excluded and the annotated, as well as unannotated parts get extracted.
 The snippets of the audio features are concatenated into a single array, where the first [:len(X)] elements are annotated and the rest unannotated features. T-SNE is then used to create a 2-dimensional vector for each section.
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth]{Audio Features T-SNE.png}
     \caption{Audio Features T-SNE}
@@ -83,7 +88,7 @@ features? Do the feature vectors of the silent regions predominantly fall into o
 
 K-means was used to cluster the audio features. The clustering was applied on the raw data instead of the t-SNE down projection since it yielded a better differentiation of annotated and unannotated features.
 
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth]{Clustered Audio Features.png}
     \caption{Clustered Audio Features}
