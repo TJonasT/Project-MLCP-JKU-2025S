@@ -12,7 +12,7 @@ The first step was to flatten them into a single array to make them usable for P
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Cumulative Explained Variance.png}
+    \includegraphics[width=0.5\linewidth]{figs/Cumulative Explained Variance.png}
     \caption{Cumulative Explained Variance using PCA on the audio features}
     \label{fig:Cumulative Explained Variance}
 \end{figure}
@@ -37,17 +37,20 @@ As a result, $\Delta$-mfcc and $\Delta\Delta$-mfcc can be ignored.
 
 \subsection{Extract a fixed-length feature vector for each annotated region as well as for all the silent parts in
 between. }
-\label{sec:Audio Features:b}.
+\label{sec:Audio Features:b}
 
 First the unimportant features are excluded and the annotated, as well as unannotated parts get extracted.
 The snippets of the audio features are concatenated into a single array, where the first [:len(X)] elements are annotated and the rest unannotated features. T-SNE is then used to create a 2-dimensional vector for each section.
 
+\newpage
+
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Audio Features T-SNE.png}
+    \includegraphics[width=0.5\linewidth]{figs/Audio Features T-SNE.png}
     \caption{Audio Features T-SNE}
     \label{fig:Audio Features T-SNE}
 \end{figure}
+
 
 \subsection{Cluster the audio features for the extracted regions. Can you identify meaningful clusters of audio
 features? Do the feature vectors of the silent regions predominantly fall into one large cluster?}
@@ -57,7 +60,7 @@ K-means was used to cluster the audio features. The clustering was applied on th
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.5\linewidth]{Clustered Audio Features.png}
+    \includegraphics[width=0.5\linewidth]{figs/Clustered Audio Features.png}
     \caption{Clustered Audio Features}
     \label{fig:Clustered Audio Features}
 \end{figure}
