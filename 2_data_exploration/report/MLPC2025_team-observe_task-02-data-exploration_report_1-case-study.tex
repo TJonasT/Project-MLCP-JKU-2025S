@@ -7,53 +7,97 @@ we first looked in ``metadata.csv'' to see which files had more than one annotat
 This resulted in a list of 149 files. \\
 We then looked at the ``metadata\_title\_embeddings.npz'' and the ``metadata\_keywords\_embeddings.npz'' in order 
 to be able to draw some conclusions. 
-At the same time, we also checked the standardization of the embedding. 
-
+At the same time, we also checked the standardization of the embedding. \\
 The approach was that files with very clear embedding (target: 1.0 in one place) lead to very clear annotations. 
 However, this did not produce any useful results. \\
-
 An important assumption here is the correctness and accuracy of the titles and keywords. \\
-
 The next approach used the file ``annotations.csv'' and the corresponding ``annotations\_text\_embeddings.npz''. 
 All annotations with more than one annotator were searched for. 
 This resulted in a list of 731 annotations and 1468 annotations in total. There were 6 files with 3 annotations each. \\
-
-From the associated text embeddings, we compared all embeddings of an annotator and an annotation with all other annotators by distance and subsequently removed 2 files.
-The file with the largest deviation is '568273.mp3' and the file with the smallest deviation is '203149.mp3'.
+From the associated text embeddings, we compared all embeddings of an annotator and an annotation with all other annotators by distance and 
+subsequently take the following 2 files out. \\
+The file with the largest difference (largest distance) is '568273.mp3' and the file with the highest similarity (smallest distance) is '203149.mp3'.
 
 
 \subsection{Identify similarities or differences between temporal and textual annotations from different annotators.}
 \label{sec:Case Study:a}
 
+The temporal windows fit together very well. The keywords in the different describe two different things (violin, drone).
+This file shows that our assumption of the correctness and accuracy of the titles and keywords is wrong. 
+The word drone appears in the title and the keywords.
 
-
-\begin{table}
-  \caption{Sample table title}
-  \label{tab:example}
+\begin{table}[h]
+  \caption{File with the largest difference}
+  \label{tab:largest difference}
   \centering
-  \begin{tabular}{lll}
+  \begin{tabular}{cclrrp{6cm}}
     \toprule
-    \multicolumn{2}{c}{Part}                   \\
-    \cmidrule(r){1-2}
-    Name     & Description     & Size ($\mu$m) \\
+    index & annotator & filename & onset & offset & text \\
     \midrule
-    Dendrite & Input terminal  & $\sim$100     \\
-    Axon     & Output terminal & $\sim$10      \\
-    Soma     & Cell body       & up to $10^6$  \\
+    7323 & 1 & 568273.mp3 & 0.0 & 20.073243 & A sharp, loud violin plays rapidly at a concert. \\
+    27703 & 2 & 568273.mp3 & 0.0 & 20.028386 & A sustained ambient drone with granular and spectral textures. \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+The collected temporal windows match very well. The keywords in the similar files describe two identical things (cows, birds).
+Annotator 1 has only worked in much more detail.
+
+\begin{table}[h]
+  \caption{File with the highest similarity}
+  \label{tab:highest similarity}
+  \centering
+  \begin{tabular}{cclrrp{6cm}}
+    \toprule
+    index & annotator & filename & onset & offset & text \\
+    \midrule
+    4228 & 1 & 203149.mp3 & 0.764318 & 1.250702 & Cows and bulls calling and mooing \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+%    20575 & 1 & 203149.mp3 & 1.273863 & 1.737087 & Cows and bulls calling \\
+%    26460 & 1 & 203149.mp3 & 1.760248 & 2.431921 & Cows and bulls calling and mooing \\
+%    864 & 1 & 203149.mp3 & 3.312045 & 5.025971 & cows and bulls calling and mooing \\
+%    31889 & 1 & 203149.mp3 & 6.647251 & 14.753655 & Cows and bulls calling and mooing \\
+    30194 & 1 & 203149.mp3 & 21.655679 & 23.045349 & cows and bulls calling and mooing \\
+    21454 & 2 & 203149.mp3 & 0.064283 & 24.191995 & cows and bulls mooing \\
+    13107 & 1 & 203149.mp3 & 0.046322 & 0.602190 & birds singing in the country side \\
+    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+%    17270 & 1 & 203149.mp3 & 1.273863 & 1.737087 & Birds singing \\
+%    5080 & 1 & 203149.mp3 & 1.876054 & 3.335206 & Birds singing \\
+%    21397 & 1 & 203149.mp3 & 4.145847 & 7.434731 & Birds singing \\
+%    33555 & 1 & 203149.mp3 & 14.915783 & 17.834089 & birds singing \\
+%    13834 & 1 & 203149.mp3 & 19.131114 & 20.173365 & Birds singiing \\
+    20461 & 1 & 203149.mp3 & 23.184316 & 24.133923 & Birds singing \\
+    29140 & 2 & 203149.mp3 & 0.064283 & 24.191995 & birds singing \\
     \bottomrule
   \end{tabular}
 \end{table}
 
 
-
 \subsection{To what extent do the annotations rely on or deviate from keywords and textual descriptions in the audio’s metadata?}
 \label{sec:Case Study:b}
 
+In both cases, the metadata match the text field very well.
+
+\begin{table}[h]
+  \caption{File with the largest difference}
+  \label{tab:metadata match}
+  \centering
+  \begin{tabular}{clp{4cm}p{8cm}}
+    \toprule
+    index & filename & title & keywords \\
+    \midrule
+    5182 & 568273.mp3 & spectral violin drone processed through granulation and reverb & spectral, tonal, granulation, horror, drone, dark, avant-garde, ambient, violin, soundscape, experimental \\
+    6104 & 203149.mp3 & End of the afternoon in a field, in Nebraska & CD130519T018, felix, cows, singing, birds, end, usa, field, call, bird, evening, countryside, bulls, moo, bull, sing, mooing, blume, calls, cow, fields, calling, nebraska, afternoon \\
+    \bottomrule
+  \end{tabular}
+\end{table}
 
 
 \subsection{Was the temporal and text annotations done according to the task description?}
 \label{sec:Case Study:c}
 
-
+Yes, the annotations were made according to the task description. 
+However, in the different case the quality is better. 
+The similar case was greatly simplified.
 
 
