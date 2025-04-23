@@ -2,14 +2,13 @@
 \section{Audio Features}
 \label{sec:Audio Features}
 
-
 \subsection{Which audio features appear useful? Select only the most relevant ones or perform a down projection for the next steps.}
 \label{sec:Audio Features:a}
 
 As a method to extract the most important audio features, PCA was chosen.
 
 The first step was to flatten them into a single array to make them usable for PCA. Using flattened data, the goal was to reach a cumulative explained variance of 95\%.
-\newpage
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth, height=5cm]{figs/Cumulative Explained Variance.png}
