@@ -1,6 +1,5 @@
 \documentclass{article}
 
-
 % if you need to pass options to natbib, use, e.g.:
 %     \PassOptionsToPackage{numbers, compress}{natbib}
 % before loading neurips_2023
@@ -21,6 +20,12 @@
 \usepackage{nicefrac}       % compact symbols for 1/2, etc.
 \usepackage{microtype}      % microtypography
 \usepackage{xcolor}         % colors
+\usepackage{lipsum}         % placeholder text generation
+
+
+% Damit die (sub)sections wie in der angabe formatiert sind: 1.), ..., a.), ...
+\renewcommand{\thesection}{\arabic{section}.)}
+\renewcommand{\thesubsection}{\alph{subsection}.)}
 
 
 \title{MLPC Report  - Task 2: Data Exploration}
@@ -35,32 +40,108 @@
 % \AND instead of \And before the third author name.
 
 
-\author{% 
+\author{% Sorry, musste die Namen alphabetisch anordnen, hätte mich sonst zu sehr getriggered :(
   Team OBSERVE \AND
-  Reinhard Josef Pötscher 
+  Johannes Grafinger 
   \And
-  Leonhard Markus Spanring 
-  \And 
   Jonas Gantar 
   \And 
-  Johannes Grafinger 
+  Leonhard Markus Spanring 
+  \And 
+  Reinhard Josef Pötscher
 }
-
 
 \begin{document}
 
-
 \maketitle
-
-
 \begin{contributions}
-  \textcolor{blue}{Reinhard and Johannes (Group 1) made the points 1. Case Study and 2. Annotation Quality of the report} \\ 
-  \textcolor{magenta}{Leonhard and Jonas (Group 2) made the points 3. Audio Features and 4. Text Features of the report} \\ 
-  \textcolor{red}{All together makes the point 5. Conclusions of the report} \\ 
-  We all did the presentation together, with Group 2 mainly providing the content and Group 1 was critically reviewing and creating the document. 
+  \textcolor{blue}{Reinhard and Johannes (Group 1) were responsible for tasks 1.) Case Study and 2.) Annotation Quality} \\ 
+  \textcolor{magenta}{Leonhard and Jonas (Group 2) were responsible for tasks 3.) Audio Features and 4.) Text Features of the report} \\ 
+  \textcolor{red}{All of us together were responsible for task 5.) Conclusions} \\ 
+  In the same constellation we created this report. We all worked on the presentation together, with Group 2 providing its content. We held regular meetings, where each group presented their results up to that point and the other critically reviewing their work.
 \end{contributions}
 
+\section{Case Study}
+\label{sec:Case Study}
 
+\subsection{}
+\label{sec:Case Study:a}
+
+\subsection{}
+\label{sec:Case Study:b}
+
+\subsection{}
+\label{sec:Case Study:c}
+
+
+
+\section{Annotation Quality} 
+\label{sec:Annotation Quality}
+
+
+\subsection{How precise are the temporal annotations?}
+\label{sec:Annotation Quality:a1}
+\lipsum[1]
+
+
+\subsection{}
+\label{sec:Annotation Quality:b1}
+
+\subsection{}
+\label{sec:Annotation Quality:a2}
+
+\subsection{}
+\label{sec:Annotation Quality:b2}
+
+\subsection{}
+\label{sec:Annotation Quality:c2}
+
+
+
+\section{Audio Features}
+\label{sec:Audio Features}
+
+\subsection{}
+\label{sec:Audio Features:a}
+
+\subsection{}
+\label{sec:Audio Features:b}
+
+\subsection{}
+\label{sec:Audio Features:c}
+
+
+
+
+\section{Text Features}
+\label{sec:Text Features}
+
+\subsection{}
+\label{sec:Text Features:a}
+
+\subsection{}
+\label{sec:Text Features:b}
+
+\subsection{}
+\label{sec:Text Features:c}
+
+
+
+
+\section{Conclusions}
+\label{sec:Conclusions}
+
+\subsection{}
+\label{sec:Conclusions:a}
+
+\subsection{}
+\label{sec:Conclusions:c}
+
+
+
+
+% Put on a seperate page, just for referencing the guidelines
+\pagebreak
 \section{Submission of MLPC reports}
 
 Please read the instructions below carefully and follow them faithfully. Note that this template is based on the official Neurips 2023 template. In your report, you may use three levels of headings, as described in what follows. 
