@@ -1,36 +1,3 @@
-\documentclass{article}
-
-
-% if you need to pass options to natbib, use, e.g.:
-%     \PassOptionsToPackage{numbers, compress}{natbib}
-% before loading neurips_2023
-
-% ready for submission
-\usepackage[final]{neurips_2023}
-
-% to avoid loading the natbib package, add option nonatbib:
-%    \usepackage[nonatbib]{neurips_2023}
-
-
-\usepackage[utf8]{inputenc} % allow utf-8 input
-\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
-\usepackage{hyperref}       % hyperlinks
-\usepackage{url}            % simple URL typesetting
-\usepackage{booktabs}       % professional-quality tables
-\usepackage{amsfonts}       % blackboard math symbols
-\usepackage{nicefrac}       % compact symbols for 1/2, etc.
-\usepackage{microtype}      % microtypography
-\usepackage{xcolor}         % colors
-\usepackage{graphicx}       % graphics
-
-\renewcommand{\thesection}{\arabic{section}.)}
-\renewcommand{\thesubsection}{\alph{subsection}.)}
-
-
-
-\begin{document}
-
-
 
 \section{Audio Features}
 \label{sec:Audio Features}
@@ -96,4 +63,3 @@ K-means was used to cluster the audio features. The clustering was applied on th
 \end{figure}
 While cluster 9 consists almost only of unannotated features, it is not so clear for all the other clusters. This is probably due to the fact, that most unannotated parts are either not completely silent or are small gaps between annotations that should still be part of the annotation.
 
-\end{document}
