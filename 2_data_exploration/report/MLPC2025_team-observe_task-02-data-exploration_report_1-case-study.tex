@@ -25,13 +25,13 @@ The file with the largest difference (largest distance) is '568273.mp3' and the 
 
 The temporal windows fit together very well. The keywords in the different describe two different things (violin, drone).
 This file shows that our assumption of the correctness and accuracy of the titles and keywords is wrong. 
-The word drone appears in the title and the keywords.
+The word drone appears in the title and the keywords (Table~\ref{tab:largest difference}).
 
 \begin{table}[h]
   \caption{File with the largest difference}
   \label{tab:largest difference}
   \centering
-  \begin{tabular}{cclrrp{6cm}}
+  \begin{tabular}{cclrrp{7.5cm}}
     \toprule
     index & annotator & filename & onset & offset & text \\
     \midrule
@@ -42,7 +42,7 @@ The word drone appears in the title and the keywords.
 \end{table}
 
 The collected temporal windows match very well. The keywords in the similar files describe two identical things (cows, birds).
-Annotator 1 has only worked in much more detail.
+Annotator 1 has only worked in much more detail (Table~\ref{tab:highest similarity}).
 
 \begin{table}[h]
   \caption{File with the highest similarity}
@@ -52,22 +52,26 @@ Annotator 1 has only worked in much more detail.
     \toprule
     index & annotator & filename & onset & offset & text \\
     \midrule
-    4228 & 1 & 203149.mp3 & 0.764318 & 1.250702 & Cows and bulls calling and mooing \\
-    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+%    4228 & 1 & 203149.mp3 & 0.764318 & 1.250702 & Cows and bulls calling and mooing \\
+    4228 & 1 & 203149.mp3 & 0.764318 & \dots & Cows and bulls calling and mooing \\
+%    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
 %    20575 & 1 & 203149.mp3 & 1.273863 & 1.737087 & Cows and bulls calling \\
 %    26460 & 1 & 203149.mp3 & 1.760248 & 2.431921 & Cows and bulls calling and mooing \\
 %    864 & 1 & 203149.mp3 & 3.312045 & 5.025971 & cows and bulls calling and mooing \\
 %    31889 & 1 & 203149.mp3 & 6.647251 & 14.753655 & Cows and bulls calling and mooing \\
-    30194 & 1 & 203149.mp3 & 21.655679 & 23.045349 & cows and bulls calling and mooing \\
+%    30194 & 1 & 203149.mp3 & 21.655679 & 23.045349 & cows and bulls calling and mooing \\
+    30194 & 1 & 203149.mp3 & \dots & 23.045349 & cows and bulls calling and mooing \\
     21454 & 2 & 203149.mp3 & 0.064283 & 24.191995 & cows and bulls mooing \\
-    13107 & 1 & 203149.mp3 & 0.046322 & 0.602190 & birds singing in the country side \\
-    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
+%    13107 & 1 & 203149.mp3 & 0.046322 & 0.602190 & birds singing in the country side \\
+    13107 & 1 & 203149.mp3 & 0.046322 & \dots & birds singing in the country side \\
+%    \vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
 %    17270 & 1 & 203149.mp3 & 1.273863 & 1.737087 & Birds singing \\
 %    5080 & 1 & 203149.mp3 & 1.876054 & 3.335206 & Birds singing \\
 %    21397 & 1 & 203149.mp3 & 4.145847 & 7.434731 & Birds singing \\
 %    33555 & 1 & 203149.mp3 & 14.915783 & 17.834089 & birds singing \\
 %    13834 & 1 & 203149.mp3 & 19.131114 & 20.173365 & Birds singiing \\
-    20461 & 1 & 203149.mp3 & 23.184316 & 24.133923 & Birds singing \\
+%    20461 & 1 & 203149.mp3 & 23.184316 & 24.133923 & Birds singing \\
+    20461 & 1 & 203149.mp3 & \dots & 24.133923 & Birds singing \\
     29140 & 2 & 203149.mp3 & 0.064283 & 24.191995 & birds singing \\
     \bottomrule
   \end{tabular}
@@ -77,13 +81,13 @@ Annotator 1 has only worked in much more detail.
 \subsection{To what extent do the annotations rely on or deviate from keywords and textual descriptions in the audio’s metadata?}
 \label{sec:Case Study:b}
 
-In both cases, the metadata match the text field very well.
+In both cases, the metadata match the text field very well (Table~\ref{tab:metadata match}).
 
 \begin{table}[h]
   \caption{File with the largest difference}
   \label{tab:metadata match}
   \centering
-  \begin{tabular}{clp{4cm}p{8cm}}
+  \begin{tabular}{clp{4cm}p{8.5cm}}
     \toprule
     index & filename & title & keywords \\
     \midrule
