@@ -27,7 +27,6 @@ Then, the absolute differences in onset-/offset times and durations were gathere
 
 We can see that most annotations fall below a difference in onset-/offset times of 0.1 seconds. Depending on the temporal resolution of the audio features, this might actually lead to some wrongly predicted frames in the future. Overall, most annotations seem to be pretty accurate.
 
-
 \subsection{How similar are the text annotations that correspond to the same region?}
 \label{sec:Annotation Quality:b1}
 Using the same criterion as described above, we collected pairs of annotations corresponding to the same regions. For each of these pairs we then simply fetched their annotation text embeddings and calculated their cosine-similarity. The results can be seen in Figure ~\ref{fig:2_b}.
@@ -43,8 +42,7 @@ We definitely see a similarity between the texts, as the bulk of the similaritie
 
 \subsection{How many annotations did we collect per file? How many distinct sound events per file?}
 \label{sec:Annotation Quality:a2}
-The number of annotations per file was easily calculated by grouping the corresponding dataframe by filenames.
-
+The number of annotations per file was easily calculated by grouping the corresponding dataframe by filenames.\\
 Estimating the number of distinct sound events per file was a bit more complicated. For each of $N$ annotations from one annotator for one file, we fetched the corresponding annotation embeddings and computed their pairwise cosine similarities. They were then put into a $N \times N$ similarity matrix. This matrix was then filtered such that all values below a similarity threshold of 0.8 were set to 0 and all others to 1 to turn the matrix into. This then gives connected components within the graph corresponding to that matrix where the annotations are extremely similar, most likely because they describe the same sound event. Therefore the number of connected components is our estimate for the number of distinct sound events. If there were multiple annotators per file, the number was averaged and rounded. The results are shown in Figure ~\ref{fig:2_c}.
 
 \begin{figure}[htbp]
