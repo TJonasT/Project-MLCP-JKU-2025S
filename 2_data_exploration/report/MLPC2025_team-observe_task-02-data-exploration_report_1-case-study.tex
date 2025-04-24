@@ -3,7 +3,7 @@
 \label{sec:Case Study}
 
 To find 2 interesting records that were edited by multiple annotators was the challenge here. 
-An important assumption here is the correctness and accuracy of the titles and keywords. \\
+%An important assumption here is the correctness and accuracy of the titles and keywords. \\
 %We first looked in ``metadata.csv'' to see which files had more than one annotator. 
 %This resulted in a list of 149 files. 
 %We then looked at the ``metadata\_title\_embeddings.npz'' and the ``metadata\_keywords\_embeddings.npz'' in order 
@@ -15,8 +15,9 @@ An important assumption here is the correctness and accuracy of the titles and k
 We used the file ``annotations.csv'' and the corresponding ``annotations\_text\_embeddings.npz''. 
 All annotations with more than one annotator were searched for. 
 %This resulted in a list of 731 annotations and 1468 annotations in total. There were 6 files with 3 annotations each. 
-From the associated text embeddings, we compared all embeddings of an annotator and an annotation with all other annotators by distance and 
-subsequently take the following 2 files out. \\
+%From the associated text embeddings, we compared all embeddings of an annotator and an annotation with all other annotators by distance and 
+%subsequently take the following 2 files out. \\
+We compared all embeddings of an annotator and an annotation with all other annotators by distance.
 The file with the largest difference (largest distance) is '568273.mp3' and the file with the highest similarity (smallest distance) is '203149.mp3'.
 
 \subsection{Identify similarities or differences between temporal and textual annotations from different annotators.}
