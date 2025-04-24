@@ -6,7 +6,7 @@
 \subsection{How precise are the temporal annotations?}
 \label{sec:Annotation Quality:a1}
 Since we did not have any ground truth for when events occur within the files, we simply compared temporal differences of annotations from different annotators corresponding to the same region. A pair of annotations were said to correspond to the same region if both their respective onset and offset times separately do not deviate by more than 0.5 seconds. This of course introduces a trade-off between False Positives and False Negatives.
-Then, the absolute differences in onset-/offset times and durations were gathered and plotted in histograms (Figure ~\ref{fig:2_a}).\\
+Then, the absolute differences in onset-/offset times and durations were gathered and plotted in histograms (Figure ~\ref{fig:2_a}). \\
 We can see that most annotations fall below a difference in onset-/offset times of 0.1 seconds. Depending on the temporal resolution of the audio features, this might actually lead to some wrongly predicted frames in the future. Overall, most annotations seem to be pretty accurate.
 
 \begin{figure}[htbp]
@@ -40,7 +40,7 @@ We definitely see a similarity between the texts, as the bulk of the similaritie
 
 \subsection{How many annotations did we collect per file? How many distinct sound events per file?}
 \label{sec:Annotation Quality:a2}
-The number of annotations per file was easily calculated by grouping the corresponding dataframe by filenames.\\
+The number of annotations per file was easily calculated by grouping the corresponding dataframe by filenames. \\
 Estimating the number of distinct sound events per file was a bit more complicated. For each of $N$ annotations from one annotator for one file, we fetched the corresponding annotation embeddings and computed their pairwise cosine similarities. They were then put into a $N \times N$ similarity matrix. This matrix was then filtered such that all values below a similarity threshold of 0.8 were set to 0 and all others to 1 to turn the matrix into. This then gives connected components within the graph corresponding to that matrix where the annotations are extremely similar, most likely because they describe the same sound event. Therefore the number of connected components is our estimate for the number of distinct sound events. If there were multiple annotators per file, the number was averaged and rounded (Figure ~\ref{fig:2_c}). \\
 The results seem reasonable. We have an average of 3.97 annotations and 2.23 distinct sound events per file.
 
@@ -60,7 +60,7 @@ The results seem reasonable. We have an average of 3.97 annotations and 2.23 dis
 \subsection{How detailed are the text annotations? How much does the quality of annotations vary between
 different annotators?}
 \label{sec:Annotation Quality:b2}
-As quality metrics for a single annotation,we decided to compare the Text-Token-Ratio (TTR, number of unique word divided by the number of words), the number of spelling errors (using a simple off-the-shelf spell checker) and the number of words. Analyzing the textual annotations for different annotators led us to the following graphs (Figure ~\ref{fig:2_d}).\\
+As quality metrics for a single annotation,we decided to compare the Text-Token-Ratio (TTR, number of unique word divided by the number of words), the number of spelling errors (using a simple off-the-shelf spell checker) and the number of words. Analyzing the textual annotations for different annotators led us to the following graphs (Figure ~\ref{fig:2_d}). \\
 The best metric out of these for checking how detailed the annotations are would most likely be the number of words per annotation. As the average annotator has written an average of 7.85 words per annotation, most of them seem to be reasonably detailed.
 As for the variation in annotation quality: we were surprised to see that almost half of the annotators had on average more than 1 spelling error in their annotation. There also seem to be some with extremely low word counts. The standard deviation 3.53 for the average number of words seems reasonable as well. Most annotations should be of sufficient quality.
 TTR turned out to be mostly useless, as most annotations are so short that it would be very hard to find duplicate words.
@@ -89,3 +89,4 @@ spelling errors).}
 As our previous analysis has shown: yes, there are some poor quality annotations, i.e. outliers. This may be some consisting only of a single word or not relating to the audio because of some misconception. 
 These could simply be removed by checking the word count of the annotations and removing the ones for which the text embedding is really dissimilar from metadata embeddings.
 When it comes to fixing typos and spelling errors, one could simply use an off-the-shelf library to go over the texts and correct them.
+
