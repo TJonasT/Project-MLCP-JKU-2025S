@@ -13,18 +13,18 @@ To find 2 interesting records that were edited by multiple annotators was the ch
 %However, this did not produce any useful results. \\
 %The next approach 
 We used the file ``annotations.csv'' and the corresponding ``annotations\_text\_embeddings.npz''. 
-All annotations with more than one annotator were searched for. 
+All files with more than one annotator were searched for. 
 %This resulted in a list of 731 annotations and 1468 annotations in total. There were 6 files with 3 annotations each. 
 %From the associated text embeddings, we compared all embeddings of an annotator and an annotation with all other annotators by distance and 
 %subsequently take the following 2 files out. \\
-We compared all embeddings of an annotator and an annotation with all other annotators by distance.
+We compared all annotations by averaging the embeddings per annotator and calculated the corresponding cosine distances.
 The file with the largest difference (largest distance) is '568273.mp3' and the file with the highest similarity (smallest distance) is '203149.mp3'.
 
 \subsection{Identify similarities or differences between temporal and textual annotations from different annotators.}
 \label{sec:Case Study:a}
 
-The temporal windows fit together very well. The keywords in the different describe two different things (violin, drone).
-This file shows that our assumption of the correctness and accuracy of the titles and keywords is wrong. 
+The temporal windows fit together very well. The keywords in the different annotations describe two different things (violin, drone).
+This shows that our assumption of the correctness and accuracy of the gathered data cannot be assumed. 
 The word drone appears in the title and the keywords (Table~\ref{tab:largest difference}).
 
 \begin{table}[h]
@@ -41,7 +41,7 @@ The word drone appears in the title and the keywords (Table~\ref{tab:largest dif
   \end{tabular}
 \end{table}
 
-The collected temporal windows match very well. The keywords in the similar files describe two identical things (cows, birds).
+The collected temporal windows match very well. The annotations in the similar files describe two identical things (cows, birds).
 Annotator 1 has only worked in much more detail (Table~\ref{tab:highest similarity}).
 
 \begin{table}[h]
@@ -81,7 +81,7 @@ Annotator 1 has only worked in much more detail (Table~\ref{tab:highest similari
 \subsection{To what extent do the annotations rely on or deviate from keywords and textual descriptions in the audio’s metadata?}
 \label{sec:Case Study:b}
 
-In both cases, the metadata match the text field very well (Table~\ref{tab:largest difference}-'text', \ref{tab:metadata match}-'text' and \ref{tab:highest similarity}-'title'+'keywords').
+In both cases, the metadata match the text field very well (Table~\ref{tab:largest difference}-'text', \ref{tab:highest similarity}-'text' and \ref{tab:metadata match}-'title'+'keywords').
 
 \begin{table}[h]
   \caption{Metadata of the files}
@@ -101,7 +101,7 @@ In both cases, the metadata match the text field very well (Table~\ref{tab:large
 \label{sec:Case Study:c}
 
 Yes, the annotations were made according to the task description. 
-However, in the different case the quality is better. 
+However, in the dissimilar case the quality is better (more detailed). 
 The similar case was greatly simplified.
 
 
