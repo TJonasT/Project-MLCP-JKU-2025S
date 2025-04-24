@@ -7,7 +7,7 @@
 
 As a method to extract the most important audio features, PCA was chosen.
 
-The first step was to flatten them into a single array to make them usable for PCA. Using flattened data, the goal was to reach a cumulative explained variance of 95\%.
+The first step was to flatten them into a single array to make them usable for PCA. Using flattened data, the goal was to reach a cumulative explained variance of 95\%. 
 
 \pagebreak
 
@@ -18,7 +18,7 @@ The first step was to flatten them into a single array to make them usable for P
     \label{fig:Cumulative Explained Variance}
 \end{figure}
 
-The threshold is reached with 52 Principle Components.  The 10 most important feature groups (embeddings, ZCR, mel-spectrogram, mfcc, etc.) of each component are then counted. 
+The threshold is reached with 52 Principle Components (Figure \ref{fig:Cumulative Explained Variance}).  The 10 most important feature groups (embeddings, ZCR, mel-spectrogram, mfcc, etc.) of each component are then counted. 
 
 \textbf{Top contributing feature groups across the first 52 components:}
 
@@ -40,7 +40,7 @@ This means that $\Delta$-mfcc and $\Delta\Delta$-mfcc can be ignored.
 \label{sec:Audio Features:b}
 
 First, the unimportant features from task a) are excluded. From the important features, the annotated and unannotated parts are extracted.
-The snippets of audio features are then concatenated into a single array where the first [:len(X)] elements are annotated and the rest are unannotated features. T-SNE is then used to create a 2-dimensional vector for each section.
+The snippets of audio features are then concatenated into a single array where the first [:len(X)] elements are annotated and the rest are unannotated features. T-SNE is then used to create a 2-dimensional vector for each section. The vectors are displayed on figure \ref{fig:Audio Features T-SNE} 
 
 %\pagebreak
 
@@ -66,5 +66,5 @@ K-means was used to cluster the audio features. Clustering was applied to the ra
     \label{fig:Clustered Audio Features}
 \end{figure}
 
-While cluster 9 consists almost entirely of unannotated features, this is not so clear for all the other clusters. This is probably due to the annotation errors, as most of the unannotated parts are either not completely silent or are small gaps between annotations that should still be part of the annotation.
+While cluster 9 consists almost entirely of unannotated features, this is not so clear for all the other clusters (Figure \ref{fig:Clustered Audio Features}). This is probably due to the annotation errors, as most of the unannotated parts are either not completely silent or are small gaps between annotations that should still be part of the annotation. 
 
