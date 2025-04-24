@@ -9,6 +9,8 @@ As a method to extract the most important audio features, PCA was chosen.
 
 The first step was to flatten them into a single array to make them usable for PCA. Using flattened data, the goal was to reach a cumulative explained variance of 95\%.
 
+\pagebreak
+
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.5\linewidth, height=5cm]{figs/Cumulative Explained Variance.png}
@@ -16,7 +18,7 @@ The first step was to flatten them into a single array to make them usable for P
     \label{fig:Cumulative Explained Variance}
 \end{figure}
 
-The threshold is reached with 52 Principle Components. Now the 10 most important feature groups (embeddings, ZCR, mel-spectrogram, mfcc, etc.) of each component are counted. 
+The threshold is reached with 52 Principle Components.  The 10 most important feature groups (embeddings, ZCR, mel-spectrogram, mfcc, etc.) of each component are then counted. 
 
 \textbf{Top contributing feature groups across the first 52 components:}
 
@@ -32,14 +34,15 @@ Feature Group: bandwidth, Count: 1;
 Feature Group: zerocrossingrate, Count: 1;
 Feature Group: flux, Count: 1
 
-As a result, $\Delta$-mfcc and $\Delta\Delta$-mfcc can be ignored.
+This means that $\Delta$-mfcc and $\Delta\Delta$-mfcc can be ignored.
 
-\subsection{Extract a fixed-length feature vector for each annotated region as well as for all the silent parts in
-between. }
+\subsection{Extract a fixed-length feature vector for each annotated region as well as for all the silent parts in between. }
 \label{sec:Audio Features:b}
 
-First the unimportant features are excluded and the annotated, as well as unannotated parts get extracted.
-The snippets of the audio features are concatenated into a single array, where the first [:len(X)] elements are annotated and the rest unannotated features. T-SNE is then used to create a 2-dimensional vector for each section.
+First, the unimportant features from task a) are excluded. From the important features, the annotated and unannotated parts are extracted.
+The snippets of audio features are then concatenated into a single array where the first [:len(X)] elements are annotated and the rest are unannotated features. T-SNE is then used to create a 2-dimensional vector for each section.
+
+%\pagebreak
 
 \begin{figure}[htbp]
     \centering
@@ -49,11 +52,12 @@ The snippets of the audio features are concatenated into a single array, where t
 \end{figure}
 
 
-\subsection{Cluster the audio features for the extracted regions. Can you identify meaningful clusters of audio
-features? Do the feature vectors of the silent regions predominantly fall into one large cluster?}
+\subsection{Cluster the audio features for the extracted regions. Can you identify meaningful clusters of audio features? Do the feature vectors of the silent regions predominantly fall into one large cluster?}
 \label{sec:Audio Features:c}
 
-K-means was used to cluster the audio features. The clustering was applied on the raw data instead of the t-SNE down projection since it yielded a better differentiation of annotated and unannotated features.
+K-means was used to cluster the audio features. Clustering was applied to the raw data instead of the t-SNE down projection, as it provided a better distinction between annotated and unannotated features.
+
+\pagebreak
 
 \begin{figure}[htbp]
     \centering
@@ -61,5 +65,6 @@ K-means was used to cluster the audio features. The clustering was applied on th
     \caption{Clustered Audio Features}
     \label{fig:Clustered Audio Features}
 \end{figure}
-While cluster 9 consists almost only of unannotated features, it is not so clear for all the other clusters. This is probably due to the fact, that most unannotated parts are either not completely silent or are small gaps between annotations that should still be part of the annotation.
+
+While cluster 9 consists almost entirely of unannotated features, this is not so clear for all the other clusters. This is probably due to the annotation errors, as most of the unannotated parts are either not completely silent or are small gaps between annotations that should still be part of the annotation.
 
