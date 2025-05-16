@@ -1,0 +1,91 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2023
+
+% ready for submission
+\usepackage[final]{neurips_2023}
+
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2023}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+
+\usepackage{graphicx}
+\usepackage[font=small,skip=2pt]{caption}
+
+\usepackage{lipsum}         % placeholder text generation
+\usepackage{subcaption} 
+
+
+% Damit die (sub)sections wie in der angabe formatiert sind: 1.), ..., a.), ...
+\renewcommand{\thesection}{\arabic{section}.)}
+\renewcommand{\thesubsection}{\alph{subsection}.)}
+
+
+\title{MLPC Report  - Task 3: Classification Experiments}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+% Sorry, musste die Namen alphabetisch anordnen, hätte mich sonst zu sehr getriggered :(
+% Kein Problem die Anordnung war wie die Gruppen Liste im Moodle ist.
+
+\author{
+  Team OBSERVE \AND
+  Johannes Grafinger 
+  \And
+  Jonas Gantar 
+  \And 
+  Leonhard Markus Spanring 
+  \And 
+  Reinhard Josef Pötscher
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{contributions}
+  \textcolor{blue}{Johannes, Jonas and Reinhard were responsible for tasks 1.) Labeling Function, 2.) Data Split, 3.) Audio Features and 4.) Evaluation. } 
+  \textcolor{magenta}{Leonhard was responsible for task 5.) Experiments. } 
+  \textcolor{red}{All of us together were responsible for task 6.) Analysing Predictions. } 
+  We prepared this report in the same constellation. We all worked together on the presentation. 
+  We held regular meetings at which each member presented their results and the others critically evaluated the work. 
+  \textcolor{green}{Everyone communicated via a dedicated Discord server and the editing was done over a Github repository. } 
+\end{contributions}
+
+\input{1-labeling-function}
+
+\input{2-data-split}
+
+\input{3-audio-features}
+
+\input{4-evaluation}
+
+\input{5-experiments}
+
+\input{6-analysing-predictions}
+
+\end{document}
+
+
+

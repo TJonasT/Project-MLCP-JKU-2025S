@@ -3,10 +3,16 @@
 # ignores all files in the following folders
 /.git
 /.idea
+/MLPC2025_dataset
+/MLPC2025_classification
 
 /2_data_exploration/.ipynb_checkpoints
 /2_data_exploration/MLPC2025_dataset
 #/2_data_exploration/report/
+
+/3_classification/.ipynb_checkpoints
+/3_classification/MLPC2025_dataset
+#/3_classification/report/
 
 
 # makes an exception 
