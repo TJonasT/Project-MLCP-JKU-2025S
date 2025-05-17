@@ -1,10 +1,8 @@
 
-\section{Labeling Function}
+\section{Labeling Function {\normalfont\normalsize: For your analysis, you may focus on a subset of the 58 classes provided}}
 \label{sec:Labeling Function}
+For this task, we mainly focused on the following, randomly chosen subset of classes of size 7: ['Airplane', 'Bird Chirp', 'Power Drill', 'Cowbell', 'Siren', 'Trumpet', 'Rooster Crow'].
 
-
-
-For your analysis, you may focus on a subset of the 58 classes provided.
 
 
 
@@ -28,19 +26,35 @@ For your analysis, you may focus on a subset of the 58 classes provided.
 
 \subsection{Which audio features appear most useful for distinguishing between the classes of interest? }
 \label{sec:Labeling Function:b}
+In order to answer this question, we first of all randomly collected 1000 frames from the dataset (representing a collection of all frames from all files) per corresponding class, resulting in a total of around 7000 frames (a bit less, since some frames contain several of the classes). For each frame, we additionally include the previous and next 2 frames as context length by simply concatenating them with the features from the central frame (in temporal order). Each class therefore has 1000 vectors of shape 5 * 942 = 4710, where 942 represents the summed number of dimensions for all features.
+
+For each class, we then estimated the Mutual Information between the label vector and all features dimensions. For each feature, we then calculated the average Mutual Information over all feature dimension corresponding to it. This gives us a measure for how informative the feature generally is for predicting the label correctly, which also captures nonlinear relationships. We then normalized the values per label, resulting in the first plot of (Figure ~\ref{fig:1_FI}). However, since this approach cannot capture effects features only have in combination with one another, we also tried fitting a simple Random Forest Classifier on the data and extracted its feature importances, resulting in the second plot of (Figure ~\ref{fig:1_FI}).
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=5cm]{figs/1_MI.png}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.49\textwidth}
+    \includegraphics[width=\textwidth, height=5cm]{figs/1_RF.png}
+  \end{subfigure}
+  \caption{Estimated feature importances as by Mutual Inforamation and Random Forest methods.}
+  \label{fig:1_FI}
+\end{figure}
+
+The features 'embeddings', 'melspectrogram', 'mfcc' and 'contrast' all seem to be pretty useful according to our Mutual Information graphic, with 'embeddings' being the most important one. However, the fact that the Random Forest almost exclusively relies on the embeddings might suggest heavy correlations between them and the other features. Which does make sense, considering many of the other features are usually used for creating such audio embeddings.
 
 
-
-
-
-
-\subsection{How well do the chosen audio features group according to the discretized class labels? }
+\subsection{How well do the chosen audio features group according to the discretized class labels? Do samples of the same class form tight clusters?}
 \label{sec:Labeling Function:c}
+Using the 4 features mentioned above, we reduced the high-dimensional data to 2 dimension using T-SNE and plotted the results in (Figure ~\ref{fig:1_TSNE}). Note that for examples corresponding to more than 1 of the classes, we randomly chose 1 for coloring.
 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth, height=5cm]{figs/1_TSNE.png}
+    \caption{Downprojected examples using selected features and their class correspondences.}
+    \label{fig:1_TSNE}
+\end{figure}
 
-
-\subsubsection{Do samples of the same class form tight clusters? }
-\label{sec:Labeling Function:c-1}
-
-
-
+Overall, the results look very reasonable. Clusters are identifiable and examples within mostly have the same attributed class. Some overlaps are of course inevitable, considering the relatively high complexity of the dataset. 
