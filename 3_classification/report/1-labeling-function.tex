@@ -6,27 +6,14 @@ For this task, we mainly focused on the following, randomly chosen subset of cla
 
 
 
-\subsection{Assess how accurately the applied labeling functions capture the intended classes. }
+\subsection{Assess how accurately the applied labeling functions capture the intended classes. Do the mapped classes correspond well to the free-text annotations? Are the labeled events clearly audible within the indicated time regions?}
 \label{sec:Labeling Function:a}
-
-
-
-\subsubsection{Do the mapped classes correspond well to the free-text annotations? }
-\label{sec:Labeling Function:a-1}
-
-
-
-\subsubsection{Are the labeled events clearly audible within the indicated time regions? }
-\label{sec:Labeling Function:a-2}
-
-
-
 
 
 
 \subsection{Which audio features appear most useful for distinguishing between the classes of interest? }
 \label{sec:Labeling Function:b}
-In order to answer this question, we first of all randomly collected 1000 frames from the dataset (representing a collection of all frames from all files) per corresponding class, resulting in a total of around 7000 frames (a bit less, since some frames contain several of the classes). For each frame, we additionally include the previous and next 2 frames as context length by simply concatenating them with the features from the central frame (in temporal order). Each class therefore has 1000 vectors of shape 5 * 942 = 4710, where 942 represents the summed number of dimensions for all features.
+In order to answer this question, we first of all randomly collected 1000 frames from the dataset (which represents a collection of all frames from all files) per class where it is positive, resulting in a total of around 7000 frames (a bit less, since some frames contain multiple of the classes). For each frame, we additionally include the previous and next two frames as context length by simply concatenating them with the features from the central frame (in temporal order). Each class therefore has 1000 vectors of shape 5 * 942 = 4710, where 942 represents the summed number of dimensions for all features.
 
 For each class, we then estimated the Mutual Information between the label vector and all features dimensions. For each feature, we then calculated the average Mutual Information over all feature dimension corresponding to it. This gives us a measure for how informative the feature generally is for predicting the label correctly, which also captures nonlinear relationships. We then normalized the values per label, resulting in the first plot of (Figure ~\ref{fig:1_FI}). However, since this approach cannot capture effects features only have in combination with one another, we also tried fitting a simple Random Forest Classifier on the data and extracted its feature importances, resulting in the second plot of (Figure ~\ref{fig:1_FI}).
 
@@ -48,7 +35,7 @@ The features 'embeddings', 'melspectrogram', 'mfcc' and 'contrast' all seem to b
 
 \subsection{How well do the chosen audio features group according to the discretized class labels? Do samples of the same class form tight clusters?}
 \label{sec:Labeling Function:c}
-Using the 4 features mentioned above, we reduced the high-dimensional data to 2 dimension using T-SNE and plotted the results in (Figure ~\ref{fig:1_TSNE}). Note that for examples corresponding to more than 1 of the classes, we randomly chose 1 for coloring.
+Using the four features mentioned above, we reduced the high-dimensional data to two dimension using T-SNE and plotted the results in (Figure ~\ref{fig:1_TSNE}). Note that for examples corresponding to more than one of the classes, we randomly chose one for coloring.
 
 \begin{figure}[htbp]
     \centering
