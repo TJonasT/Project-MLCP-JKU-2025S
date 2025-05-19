@@ -1,1 +1,1 @@
-{"n_estimators": 10, "max_depth": 10, "training_time": 59.45433521270752}
+{"n_estimators": 10, "max_depth": 10, "min_samples_split": 5}

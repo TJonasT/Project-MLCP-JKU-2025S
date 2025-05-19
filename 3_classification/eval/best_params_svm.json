@@ -1,1 +1,1 @@
-{"C": 0.1, "kernel": "linear", "degree": 2, "training_time": 114.44877672195435}
+{"C": 1, "kernel": "rbf", "degree": 3, "training_time": 206.95531296730042}
