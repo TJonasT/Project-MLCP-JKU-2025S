@@ -15,7 +15,7 @@ Unfortunately we were not able to include context frames in our experiments as w
 \subsection{Did you apply any preprocessing to the audio features? If so, explain which techniques you used and why they were necessary.}
 \label{sec:Audio Features:b}
 
-Preprocessing is an important step for ensuring consistency in the data and making the lives of models like Support-Vector-Machines much easier as the features are confined in a much smaller and more uniform space. 
+Preprocessing is an important step for ensuring consistency in the data and making the lives of models like Support-Vector-Machines much easier. We mainly normalized the data in order to to bring every example to a similar scale magnitude-wise, which generally improves performance and convergence rates.
 
 We tried normalizing the data globally using the global mean and standard deviation from only our training set (to avoid data leakage), normalizing the features frame-wise to have unit mean and variance as well as a combination of these. In the end, doing only the latter proved to be the most performant, so that is what we did.
 
