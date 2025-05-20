@@ -4,17 +4,20 @@
 
 
 
-
 \subsection{Which subset of audio features did you select for your final classifier? Describe the selection process and the criteria you used to make your choice.}
 \label{sec:Audio Features:a}
 
-After reflecting on the results from section \hyperref[sec:Labeling Function:b]{1.), b.)}, we have decided to run our experiments only on the 'embeddings' feature, as there was also was no significant drop in performance for tests we ran on a small scale. Our reason for only using that feature stays the same as discussed in the last paragraph of that section: Seemingly heavy correlations and possible redundancy of the other three features considering the possible creation process of these audio embeddings.
+After reflecting on the results from section \hyperref[sec:Labeling Function:b]{1.), b.)}, we have decided to run our experiments on the 'embeddings' feature as well as the other three features mentioned in that section. Even though the results imply heavy correlations and possible redundancies to the other three features - especially considering the possible creation process of these audio embeddings -  this still offered a slight increase in performance for tests we ran on a small scale.
+
+Unfortunately we were not able to include context frames in our experiments as we did earlier, since the computational complexity was already extremely high.
 
 
 \subsection{Did you apply any preprocessing to the audio features? If so, explain which techniques you used and why they were necessary.}
 \label{sec:Audio Features:b}
 
-Preprocessing is an important step for ensuring consistency in the data and making the lives of models like Support-Vector-Machines much easier as the features are confined in a smaller space. We used the global mean and standard deviation from the training data and normalized our training, validation and test sets using these global statistics (to avoid data leakage). We then additionally normalized the features frame-wise to have unit mean and variance for each example.
+Preprocessing is an important step for ensuring consistency in the data and making the lives of models like Support-Vector-Machines much easier as the features are confined in a much smaller and more uniform space. 
+
+We tried normalizing the data globally using the global mean and standard deviation from only our training set (to avoid data leakage), normalizing the features frame-wise to have unit mean and variance as well as a combination of these. In the end, doing only the latter proved to be the most performant, so that is what we did.
 
 
 
