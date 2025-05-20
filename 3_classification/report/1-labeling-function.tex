@@ -1,18 +1,17 @@
 
-\section{Labeling Function {\normalfont\normalsize: For your analysis, you may focus on a subset of the 58 classes provided}}
+\section{Labeling Function: {\normalfont\normalsize For your analysis, you may focus on a subset of the 58 classes provided.}}
 \label{sec:Labeling Function}
-For this task, we mainly focused on the following, randomly chosen subset of classes of size 7: ['Airplane', 'Bird Chirp', 'Power Drill', 'Cowbell', 'Siren', 'Trumpet', 'Rooster Crow'].
 
-
+For subtasks a.) and b.) we mainly focused on the following, randomly chosen subset of classes of size 7: ['Airplane', 'Bird Chirp', 'Power Drill', 'Cowbell', 'Siren', 'Trumpet', 'Rooster Crow'].
 
 
 \subsection{Assess how accurately the applied labeling functions capture the intended classes. Do the mapped classes correspond well to the free-text annotations? Are the labeled events clearly audible within the indicated time regions?}
 \label{sec:Labeling Function:a}
 
 
-
 \subsection{Which audio features appear most useful for distinguishing between the classes of interest? }
 \label{sec:Labeling Function:b}
+
 In order to answer this question, we first of all randomly collected 1000 frames from the dataset (which represents a collection of all frames from all files) per class where it is positive, resulting in a total of around 7000 frames (a bit less, since some frames contain multiple of the classes). For each frame, we additionally include the previous and next two frames as context length by simply concatenating them with the features from the central frame (in temporal order). Each class therefore has 1000 vectors of shape 5 * 942 = 4710, where 942 represents the summed number of dimensions for all features.
 
 For each class, we then estimated the Mutual Information between the label vector and all features dimensions. For each feature, we then calculated the average Mutual Information over all feature dimension corresponding to it. This gives us a measure for how informative the feature generally is for predicting the label correctly, which also captures nonlinear relationships. We then normalized the values per label, resulting in the first plot of (Figure ~\ref{fig:1_FI}). However, since this approach cannot capture effects features only have in combination with one another, we also tried fitting a simple Random Forest Classifier on the data and extracted its feature importances, resulting in the second plot of (Figure ~\ref{fig:1_FI}).
