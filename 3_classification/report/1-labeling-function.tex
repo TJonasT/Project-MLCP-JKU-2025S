@@ -6,9 +6,9 @@ For subtasks b.) and c.), we focused primarily on the following randomly selecte
 
 \subsection{Assess how accurately the applied labeling functions capture the intended classes. Do the mapped classes correspond well to the free-text annotations? Are the labeled events clearly audible within the indicated time regions?}
 \label{sec:Labeling Function:a}
-To evaluate the accuracy of the applied labeling function, the free text annotations were analyzed by applying an algorithm that counted the frequency of semantically meaningful words in each annotation (Tabel ~\ref{tbl:1}).
+To evaluate the accuracy of the applied labeling function, the free text annotations were analyzed by applying an algorithm that counted the frequency of semantically meaningful words in each annotation (\hyperref[tbl:1]{Table ~\ref*{tbl:1}}).
 The resulting list of most common words per label clearly showed that the labeling function captured the intended classes with a high accuracy; e.g. all words related to dogs (dog, barking, growling) were clearly captured under a single label. Indicating that the labeled events are clearly audible within the indicated time regions. This was further proven by checking random samples that aligned with the given labels. \\
-This was further confirmed by laying a random selection of labels over a clustered down-projection of the audio features (see section 1.c.).
+This was further confirmed by laying a random selection of labels over a clustered down-projection of the audio features (see section \hyperref[sec:Labeling Function:c]{1.), c.)}).   
 
 
 
@@ -52,7 +52,7 @@ This was further confirmed by laying a random selection of labels over a cluster
 
 In order to answer this question, we first of all randomly collected 1000 frames from the dataset (which represents a collection of all frames from all files) per class where it is positive, resulting in a total of around 7000 frames (a bit less, since some frames contain multiple of the classes). For each frame, we additionally include the previous and next two frames as context length by simply concatenating them with the features from the central frame (in temporal order). Each class therefore has 1000 vectors of shape 5 * 942 = 4710, where 942 represents the summed number of dimensions for all features.
 
-For each class, we then estimated the Mutual Information between the label vector and all features dimensions. For each feature, we then calculated the average Mutual Information over all feature dimension corresponding to it. This gives us a measure for how informative the feature generally is for predicting the label correctly, which also captures nonlinear relationships. We then normalized the values per label, resulting in the first plot of (Figure ~\ref{fig:1_FI}). However, since this approach cannot capture effects features only have in combination with one another, we also tried fitting a simple Random Forest Classifier on the data and extracted its feature importances, resulting in the second plot of (Figure ~\ref{fig:1_FI}).
+For each class, we then estimated the Mutual Information between the label vector and all features dimensions. For each feature, we then calculated the average Mutual Information over all feature dimension corresponding to it. This gives us a measure for how informative the feature generally is for predicting the label correctly, which also captures nonlinear relationships. We then normalized the values per label, resulting in the first plot of \hyperref[fig:1_FI]{Figure~\ref*{fig:1_FI}}. However, since this approach cannot capture effects features only have in combination with one another, we also tried fitting a simple Random Forest Classifier on the data and extracted its feature importances, resulting in the second plot of \hyperref[fig:1_FI]{Figure~\ref*{fig:1_FI}}.
 
 \begin{figure}[htbp]
   \centering
@@ -72,7 +72,7 @@ The features 'embeddings', 'melspectrogram', 'mfcc' and 'contrast' all seem to b
 
 \subsection{How well do the chosen audio features group according to the discretized class labels? Do samples of the same class form tight clusters?}
 \label{sec:Labeling Function:c}
-Using the four features mentioned above, we reduced the high-dimensional data to two dimension using T-SNE and plotted the results in (Figure ~\ref{fig:1_TSNE}). Note that for examples corresponding to more than one of the classes, we randomly chose one for coloring.
+Using the four features mentioned above, we reduced the high-dimensional data to two dimension using T-SNE and plotted the results in \hyperref[fig:1_TSNE]{Figure~\ref*{fig:1_TSNE}}. Note that for examples corresponding to more than one of the classes, we randomly chose one for coloring.
 
 \begin{figure}[htbp]
     \centering
