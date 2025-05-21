@@ -5,23 +5,123 @@
 
 
 
-
-
 \subsection{Describe how you split the data for model selection and performance evaluation. }
 \label{sec:Data Split:a}
 
+For audio classification tasks, the standard and robust approach is to split the dataset into three distinct subsets to effectively train, tune, and evaluate the model:
 
+
+\begin{enumerate}
+	\item Training Set:
+	\begin{itemize}
+		\item Used to train (fit) the model's parameters.
+		\item Typically constitutes around 60–80% of the data.
+	\end{itemize}
+	
+	\item Validation Set:
+	\begin{itemize}
+		\item Used for hyperparameter tuning and model selection.
+		\item Helps prevent overfitting to the training data.
+		\item Typically 10–20% of the data.
+	\end{itemize}
+
+	\item Test Set:
+	\begin{itemize}
+		\item Used only for final performance evaluation to estimate how the model will perform on unseen data.
+		\item Hold back until the very end to provide an {\bf unbiased final estimate of performance}.
+		\item Typically 10–20% of the data.
+	\end{itemize}
+\end{enumerate}
+
+\begin{itemize}
+	\item Example Split:
+	\begin{itemize}
+		\item 60% Training
+		\item 20% Validation
+		\item 20% Test
+	\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+	\item Alternative: {\bf Cross-Validation}
+	\begin{itemize}
+		\item If the dataset is small, k-fold cross-validation (often with stratification) on the training+validation split can be used for more robust hyperparameter tuning.
+		\item The test set remains untouched until final evaluation.
+	\end{itemize}
+\end{itemize}
+
+
+We first loaded all the audio data with the features and the labels and split it into individual frames. 
 
 
 
 
 \subsection{Are there any potential factors that could cause information leakage across the data splits if they are not carefully designed? If yes, how did you address these risks?}
+Yes, there are {\bf critical risks of information leakage} in audio classification if splits are not carefully designed:
+
+
 \label{sec:Data Split:b}
+
+\begin{itemize}
+	\item Common Sources of Leakage:
+	\begin{itemize}
+		\item {\bf Overlapping audio segments:} \\
+			If data is split by segment but not by full recording/file/session, temporal leakage can occur.
+		\item {\bf Same noise/audio source in multiple splits:} \\
+			If one noise/audio source appears in both training and test sets, the model may learn source-specific features rather than class-specific ones.
+		\item {\bf Similar background noise or recording conditions:} \\
+			If recordings from the same session or environment are in multiple splits, the model may overfit to irrelevant cues.
+	\end{itemize}
+	
+	\item Mitigation Strategies:
+	\begin{itemize}
+		\item {\bf Source-Independent Splits:} \\
+			Ensure that all data from a single noise/audio source is assigned to only one of the training, validation, or test sets.
+		\item {\bf Session-Based Splits:} \\
+			If the data includes session or recording metadata (labels), use it to group and split accordingly.
+		\item {\bf Careful Preprocessing:} \\
+			Avoid any preprocessing (e.g. feature normalization) that uses statistics from the full dataset — use only training data statistics.
+	\end{itemize}
+\end{itemize}
+
+
+To avoid possible problems when splitting into the three data sets, 
+we only split at file boundaries and tried to have an approximately equal distribution in all parts (stratification).
+We worked in frames during pre-processing (normalization).
+
 
 
 
 \subsection{Describe how you obtained unbiased final performance estimates for your models. }
 \label{sec:Data Split:c}
+
+To ensure the final performance estimate is unbiased:
+
+\begin{enumerate}
+	\item Strict Test Set Separation:
+	\begin{itemize}
+		\item The test set is never used during training or validation.
+		\item Final model evaluation is performed only once on this set after all model development is complete.
+	\end{itemize}
+	
+	\item Validation-Driven Tuning:
+	\begin{itemize}
+		\item Hyperparameters and model architecture are selected using only training and validation data.
+		\item If cross-validation is used, it’s done within the training+validation data.
+	\end{itemize}
+	
+	\item Repeated Experiments:
+	\begin{itemize}
+		\item If randomness (e.g. in weight initialization or data sampling) affects results, 
+			the experiment is repeated with different seeds and the average + standard deviation is reported.
+	\end{itemize}
+
+	\item Stratified Sampling (if needed)**:
+	\begin{itemize}
+		\item Ensures that the class distribution in all sets reflects that of the full dataset, which is particularly important in our case (unbalanced data sets).
+	\end{itemize}
+\end{enumerate}
+
 
 
 
