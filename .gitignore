@@ -31,3 +31,5 @@
 #  - the git ignore file
 !.gitignore
 3_classification/eval/best_model_svm_reinhard.pkl
+3_classification/5_classification_reinhard.ipynb
+3_classification/eval/best_model_rf_reinhard.pkl
