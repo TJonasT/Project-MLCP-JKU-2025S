@@ -6,7 +6,7 @@ For subtasks b.) and c.), we focused primarily on the following randomly selecte
 
 \subsection{Assess how accurately the applied labeling functions capture the intended classes. Do the mapped classes correspond well to the free-text annotations? Are the labeled events clearly audible within the indicated time regions?}
 \label{sec:Labeling Function:a}
-To evaluate the accuracy of the applied labeling function, the free text annotations were analyzed by applying an algorithm that counted the frequency of semantically meaningful words in each annotation (\hyperref[tbl:1]{Table ~\ref*{tbl:1}}).
+To evaluate the accuracy of the applied labeling function, the free text annotations were analyzed by applying an algorithm that counted the frequency of semantically meaningful words\footnote{excluded words: 'a', 'an', 'and', 'are', 'as', 'at', 'by', 'from', 'in', 'is', 'is', 'it', 'noise', 'of', 'on', 'sound', 'the', 'then', 'to', 'with'} in each annotation (\hyperref[tbl:1]{Table ~\ref*{tbl:1}}).
 The resulting list of most common words per label clearly showed that the labeling function captured the intended classes with a high accuracy; e.g. all words related to dogs (dog, barking, growling) were clearly captured under a single label. Indicating that the labeled events are clearly audible within the indicated time regions. This was further proven by checking random samples that aligned with the given labels. \\
 This was further confirmed by laying a random selection of labels over a clustered down-projection of the audio features (see section \hyperref[sec:Labeling Function:c]{1.), c.)}).   
 
