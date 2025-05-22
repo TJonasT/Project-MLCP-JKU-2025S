@@ -18,16 +18,16 @@ change in performance.}
 
 For tuning the hyperparameters 5\% of the training set was used on different combinations of hyperparameters.
 
-\subsubsection*{Random Forest}
-To find the optimal hyperparameters for Random Forest, different combinations of n\_estimators, max\_depth and min\_samples\_split were tested (See table\ref{tab:Tested hyperparameters}). Overall, the performance is  unsatisfactory and especially bad with low max\_depth values (See figure\ref{fig:F1 Score for different hyperparameters (Random Forest)}.
+\textbf{Random Forest} \quad
+To find the optimal hyperparameters for Random Forest, different combinations of n\_estimators, max\_depth and min\_samples\_split were tested (See table \ref{tab:Tested hyperparameters}). Overall, the performance is  unsatisfactory and especially bad with low max\_depth values (See figure\ref{fig:F1 Score for different hyperparameters (Random Forest)}.
 
-\subsubsection*{SVM}
-To find the optimal hyperparameters for SVM, different combinations of C and kernel  were tested (See table\ref{tab:Tested hyperparameters}). More extensive testing was not feasible due to the long training times. SVM performs relatively good and the result of the testing is that low C values on the rbf kernel lead to the best results (See figure\ref{fig:F1 Score for different hyperparameters (SVM)}).
+\textbf{SVM} \quad
+To find the optimal hyperparameters for SVM, different combinations of C and kernel  were tested (See table \ref{tab:Tested hyperparameters}). More extensive testing was not feasible due to the long training times. SVM performs relatively good and the result of the testing is that low C values on the rbf kernel lead to the best results (See figure \ref{fig:F1 Score for different hyperparameters (SVM)}).
 
 
-\subsubsection*{Logistic Regression}
+\textbf{Logistic Regression} \quad
 
-To find the optimal hyperparameters for Logistic Regression, different combinations of C, penalty and solver  were tested (See table\ref{tab:Tested hyperparameters}). The performance iscomparable with SVM but the training time is many times faster. The only outlier was the combination of l2 and newton-cholesky which yielded very long training durations (See figure\ref{fig:F1 Score for different hyperparameters (Logistic Regression)}).
+To find the optimal hyperparameters for Logistic Regression, different combinations of C, penalty and solver  were tested (See table \ref{tab:Tested hyperparameters}). The performance iscomparable with SVM but the training time is many times faster. The only outlier was the combination of l2 and newton-cholesky which yielded very long training durations (See figure \ref{fig:F1 Score for different hyperparameters (Logistic Regression)}).
 \begin{table}[htbp]
     \centering
     \begin{tabular}{cccccccc}\toprule
@@ -55,14 +55,14 @@ To find the optimal hyperparameters for Logistic Regression, different combinati
     \centering
     \includegraphics[width=\textwidth]{figs/Random_Forest.png}
     \caption{F1 Score for different hyperparameters (Random Forest)}
-    \label{fig:F1 Score for different hyperparameters (Random Forest)}
+    \label{fig:F1 Score for different hyperparameters - Random Forest}
   \end{minipage}
   \hfill
   \begin{minipage}[b]{0.49\textwidth}
     \centering
     \includegraphics[width=\textwidth]{figs/Logistic_Regression.png}
     \caption{F1 Score for different hyperparameters (Logistic Regression)}
-    \label{fig:F1 Score for different hyperparameters (Logistic Regression)}
+    \label{fig:F1 Score for different hyperparameters - Logistic Regression}
   \end{minipage}
 \end{figure}
 
@@ -70,21 +70,21 @@ To find the optimal hyperparameters for Logistic Regression, different combinati
     \centering
     \includegraphics[width=0.5\linewidth, height=5cm]{figs/SVM.png}
     \caption{F1 Score for different hyperparameters (SVM)}
-    \label{fig:F1 Score for different hyperparameters (SVM)}
+    \label{fig:F1 Score for different hyperparameters - SVM}
 \end{figure}
 
 \item \textbf{(To what extent) Does overfitting or underfitting occur, and what does it depend on?}
 \end{enumerate}
 
-\subsubsection*{Random Forest}
+\textbf{Random Forest} \quad
 n\_estimators: Severe underfitting for  n\_estimators = 10. Severe overfitting for n\_estimators $\geq$ 30
 max\_depth: Strong underfitting for max\_depth = 5.
 min\_samples\_split: Dependent of the max\_depth, but doesn't cause major changes to the performance.
 
-\subsubsection*{SVM}
+\textbf{SVM} \quad
 C and kernel:  For rbf and polynomial kernal, minor underfitting can be detected at C < 1( See figure \ref{fig:F1 Score for different hyperparameters (SVM)}). Overfitting occurs for rbf and polynomial kernel at C $\geq$ 1 and for the linear kernel at C > 1.
 
-\subsubsection*{Logistic Regression}
+\textbf{Logistic Regression} \quad
 No major signs of over- or underfitting were observed
 
 \subsection{After selecting appropriate hyperparameters, compare the final performance estimate of the three classifiers. }
