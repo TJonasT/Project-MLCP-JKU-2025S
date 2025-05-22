@@ -20,44 +20,52 @@
 
 \subsection{Describe how you split the data for model selection and performance evaluation. }
 \label{sec:Data Split:a}
-
-For audio classification tasks, the standard and robust approach is to split the dataset into three distinct subsets to effectively train, tune, and evaluate the model:
+To ensure a robust raining and proper model evaluation the available data set was independently split into three separate sets: Taring Set, Validation Set and Test set.
 
 
 \begin{enumerate}
-	\item {\bf Training Set: } Used to train (fit) the model's parameters. Typically constitutes around 60–80% of the data. 60% in our case. 
+	\item {\bf Training Set: } The Training Set was used to train our classifiers. Training Set size was 60\% of our total data.
 	
-	\item {\bf Validation Set: } Used for hyperparameter tuning and model selection. Helps prevent overfitting to the training data. Typically 10–20% of the data. 20% in our case. 
+	\item {\bf Validation Set: } The Validation Set was used to estimate the performance of our model during training and to adust hyperparameter, while helping us to detect potential overfitting. Validation Set size was 20\% of our total data.
 
-	\item {\bf Test Set: } Used only for final performance evaluation to estimate how the model will perform on unseen data. Hold back until the very end to provide an {\it unbiased final estimate of performance}. Typically 10–20% of the data. 20% in our case. 
+	\item {\bf Test Set: } The Test Set was used to evaluate the performance of our final model and estimate how well it would perform on unseen data. This Set was unseen by our classifiers prior to the final evaluation. Test Set size was 20\% of our total data.
+
+
+    
 \end{enumerate}
 
-\begin{itemize}
-	\item \uppercase{Alternative: } {\bf Cross-Validation} If the dataset is small, k-fold cross-validation (often with stratification) on the training+validation split can be used for more robust hyperparameter tuning. The test set remains untouched until final evaluation.
-\end{itemize}
+Using Cross-Validation was considered but ultimately not used as the provided data-set was large enough to have a low risk if underfitting and produced an overall satisfying results without the implementation of Cross-Validation.
 
 
 We first loaded all the audio data with the features and the labels and split it into individual frames. 
 
 
 
-
 \subsection{Are there any potential factors that could cause information leakage across the data splits if they are not carefully designed? If yes, how did you address these risks?}
+
 Yes, there are {\bf critical risks of information leakage} in audio classification if splits are not carefully designed:
 
 
 \label{sec:Data Split:b}
 
 \begin{itemize}
-	\item {\bf Common Sources of Leakage: } \\
-		{\it Overlapping audio segments: } If data is split by segment but not by full recording/file/session, temporal leakage can occur. \\
-		{\it Same noise/audio source in multiple splits: } If one noise/audio source appears in both training and test sets, the model may learn source-specific features rather than class-specific ones. \\
-		{\it Similar background noise or recording conditions: } If recordings from the same session or environment are in multiple splits, the model may overfit to irrelevant cues. 
+	\item {\bf Common Sources of Leakage: } 
+    
+		{\bf Temporal close audio segments: } If data is split by audio segments and not by full audio recording/session, temporal close audio segment can end up in different data sets. Because these segments will be closely related or even almost identical this would introduce data leakage to the data splits. 
+        
+		{\bf Same recording conditions: } If the same noise/audio source appears in both training and test sets, the model may learn source-specific features rather than class-specific ones. This can occur data from the same recording ends up in different data-sets. 
+
+        {\bf Improper data splitting: } If data splitting is not done carefully, duplicates of the same sample might be included in multiple Sets causing data leakage.
+        
+        {\bf Leakage though data augmentation: } If data augmentation is applied before the data split and thus based on the entire dataset, this can result if information from the Test Set being included in the Training Set, causing leakage.\\
 	
-	\item {\bf Mitigation Strategies: } \\
-		{\it Source-Independent Splits:} Ensure that all data from a single noise/audio source is assigned to only one of the training, validation, or test sets. \\
-		{\it Session-Based Splits:} If the data includes session or recording metadata (labels), use it to group and split accordingly. \\
-		{\it Careful Preprocessing:} Avoid any preprocessing (e.g. feature normalization) that uses statistics from the full dataset — use only training data statistics. 
+	\item {\bf Mitigation Strategies: } 
+    
+		{\bf File Splits:} We split the data not over the audio segments but over the full audio files. This ensures that temporally close segments and segments with the same recording condition are grouped into the same data set.
+
+		{\bf Datasplit checking:} All data samples were indexed prior to data split and checked afterwards to ensure uniqueness among the samples. 
+        
+		{\bf Careful Preprocessing:} We avoided any preprocessing (e.g. feature normalization) that used statistics from the full dataset — we used only training data statistics. 
 \end{itemize}
 
 
@@ -71,12 +79,14 @@ We worked in frames during pre-processing (normalization).
 \subsection{Describe how you obtained unbiased final performance estimates for your models. }
 \label{sec:Data Split:c}
 
-To ensure the final performance estimate is unbiased:
+Two main aspect were considered during model development to ensure a unbiased final performance estimation:
 
 \begin{enumerate}
-	\item {\bf Strict Test Set Separation: } The test set is never used during training or validation. Final model evaluation is performed only once on this set after all model development is complete.
 	
-	\item {\bf Validation-Driven Tuning: } Hyperparameters and model architecture are selected using only training and validation data. 
+	\item {\bf Leakage minimization: } The prior mentioned data leakage techniques were carefully implemented to ensure a clear separation between the individual data-sets. 
+    
+	\item {\bf Strict Test Set Separation: } The test set was never used during training or validation. Final model evaluation was performed only once on the Test Set after all model development was completed.
+
 %		If cross-validation is used, it’s done within the training+validation data.
 %	
 %	\item {\bf Repeated Experiments: } If randomness (e.g. in weight initialization or data sampling) affects results, the experiment is repeated with different seeds and the average + standard deviation is reported.
