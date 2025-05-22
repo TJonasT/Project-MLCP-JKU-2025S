@@ -12,7 +12,7 @@
 
 In terms of performance metrics we decided to record - per class label - both the Balanced Accuracy as well as the F1-score of our models predictions. As single measures of performance of a model, we then used the macro-averaged Balanced Accuracy / F1-score (over the 58 class labels), like was shown in the tutorial session. 
 
-Balanced Accuracy, defined as the average recall per class (always binary in our case) obviously gives a more balanced performance metric, focusing on both the positive and negative classes. This metric was mainly included in order to be able to be able to compare the models to the baseline perfomance (see section \hyperref[sec:Evaluation:b]{4.), b.)}).\\
+Balanced Accuracy, defined as the average recall per class (always binary in our case) obviously gives a more balanced performance metric, focusing on both the positive and negative classes. This metric was mainly included in order to be able to be able to compare the models to the baseline performance (see section \hyperref[sec:Evaluation:b]{4.), b.)}).\\
 The F1-score on the other hand is most likely a much better suited performance metric for this task. Representing the harmonic mean of precision and recall, it has a stronger focus on predictions of the positive class. This makes sense for our task, as one classifier essentially consists of 58 binary classifiers - one per class label - which needs to predict in which frames it is present, i.e. positive. Generally this metric will be much lower than the Balanced Accuracy.
 
 
