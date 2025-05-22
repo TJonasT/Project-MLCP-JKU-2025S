@@ -22,7 +22,7 @@ To find the optimal hyperparameters for Random Forest, different combinations of
 To find the optimal hyperparameters for SVM, different combinations of C and kernel  were tested (\hyperref[tab:Tested hyperparameters]{Table \ref*{tab:Tested hyperparameters}}). More extensive testing was not feasible due to the long training times. SVM performs relatively good and the result of the testing is that low C values on the rbf kernel lead to the best results (\hyperref[fig:F1 Score for different hyperparameters - SVM]{Figure \ref{fig:F1 Score for different hyperparameters - SVM}}). \\[-3pt]
 
 \textbf{Logistic Regression} \quad
-To find the optimal hyperparameters for Logistic Regression, different combinations of C, penalty and solver  were tested (\hyperref[tab:Tested hyperparameters]{Table \ref{tab:Tested hyperparameters}}). The performance iscomparable with SVM but the training time is many times faster. The only outlier was the combination of l2 and newton-cholesky which yielded very long training durations (\hyperref[fig:F1 Score for different hyperparameters - Logistic Regression]{Figure \ref{fig:F1 Score for different hyperparameters - Logistic Regression}}). \\
+To find the optimal hyperparameters for Logistic Regression, different combinations of C, penalty and solver  were tested (\hyperref[tab:Tested hyperparameters]{Table \ref{tab:Tested hyperparameters}}). The performance is comparable with SVM but the training time is many times faster. The only outlier was the combination of l2 and newton-cholesky which yielded very long training durations (\hyperref[fig:F1 Score for different hyperparameters - Logistic Regression]{Figure \ref{fig:F1 Score for different hyperparameters - Logistic Regression}}). \\
 
 \begin{table}[htbp]
     \centering
@@ -78,7 +78,7 @@ max\_depth: Strong underfitting for max\_depth = 5.
 min\_samples\_split: Dependent of the max\_depth, but doesn't cause major changes to the performance. \\[-3pt]
 
 \textbf{SVM} \quad
-C and kernel: For rbf and polynomial kernal, minor underfitting can be detected at C < 1(\hyperref[fig:F1 Score for different hyperparameters - SVM]{Figure \ref{fig:F1 Score for different hyperparameters - SVM}}). Overfitting occurs for rbf and polynomial kernel at C $\geq$ 1 and for the linear kernel at C > 1. \\[-3pt]
+C and kernel: For rbf and polynomial kernel, minor underfitting can be detected at C < 1(\hyperref[fig:F1 Score for different hyperparameters - SVM]{Figure \ref{fig:F1 Score for different hyperparameters - SVM}}). Overfitting occurs for rbf and polynomial kernel at C $\geq$ 1 and for the linear kernel at C > 1. \\[-3pt]
 
 \textbf{Logistic Regression} \quad
 No major signs of over- or underfitting were observed. \\[-3pt]
