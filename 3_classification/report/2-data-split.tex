@@ -26,7 +26,7 @@ To ensure a robust raining and proper model evaluation the available data set wa
 \begin{enumerate}
 	\item {\bf Training Set: } The Training Set was used to train our classifiers. Training Set size was 60\% of our total data.
 	
-	\item {\bf Validation Set: } The Validation Set was used to estimate the performance of our model during training and to adust hyperparameter, while helping us to detect potential overfitting. Validation Set size was 20\% of our total data.
+	\item {\bf Validation Set: } The Validation Set was used to estimate the performance of our model during training and to adjust hyperparameter, while helping us to detect potential overfitting. Validation Set size was 20\% of our total data.
 
 	\item {\bf Test Set: } The Test Set was used to evaluate the performance of our final model and estimate how well it would perform on unseen data. This Set was unseen by our classifiers prior to the final evaluation. Test Set size was 20\% of our total data.
 
@@ -57,7 +57,7 @@ Yes, there are {\bf critical risks of information leakage} in audio classificati
 
         {\bf Improper data splitting: } If data splitting is not done carefully, duplicates of the same sample might be included in multiple Sets causing data leakage.
         
-        {\bf Leakage though data augmentation: } If data augmentation is applied before the data split and thus based on the entire dataset, this can result if information from the Test Set being included in the Training Set, causing leakage.\\
+        {\bf Leakage through data augmentation: } If data augmentation is applied before the data split and thus based on the entire dataset, this can result if information from the Test Set being included in the Training Set, causing leakage.\\
 	
 	\item {\bf Mitigation Strategies: } 
     
