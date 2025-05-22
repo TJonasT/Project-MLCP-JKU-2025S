@@ -9,7 +9,7 @@ For the calculation of prediction quality metrics we skipped class-labels which 
 
 \subsection{Use the spectrogram and the sequence of predictions to visualize the classifier output. }
 \label{sec:Analysing Predictions:a}
-We simply feed all frames of a single file into the model, which in turn produces the corresponding predictions. These predictions as well as the corresponding melspectrogram are then plotted. We only plot labels which have been predicted to be present in at least one frame within the file, see \hyperref[fig:6_plots]{Figure~\ref*{fig:6_plots}}.
+We simply feed all frames of a single file into the model, which in turn produces the corresponding predictions. These predictions as well as the corresponding melspectrogram are then plotted. We only plot labels which have been predicted to be present in at least one frame within the file (\hyperref[fig:6_plots]{Figure~\ref*{fig:6_plots}}).
 
 \begin{figure}[htbp]
   \centering
@@ -38,7 +38,7 @@ We simply feed all frames of a single file into the model, which in turn produce
 
 From analyzing several predictions of audio recordings we have identified that the models have a hard time predicting classes in recordings containing lots of noise or in which several class labels are active at once. Additionally, predictions for class labels which are underrepresented in the dataset (\hyperref[fig:data-split]{see Figure~\ref*{fig:data-split}}) also are lacking. 
 
-Often the classifier has little peaks and valleys lasting only a few frames in its predictions, as can be seen in the second plot of \hyperref[fig:6_plots]{Figure~\ref*{fig:6_plots}} with the 'Guitar' or 'Piano' labels. Such spurious (mis-)classifications could easily be removed by setting a lower threshold for how many frames a positive or negative prediction has to last, and filtering the output accordingly. This should overall increase the quality of predictions.\\
+Often the classifier has little peaks and valleys lasting only a few frames in its predictions, as can be seen in the second plot of (\hyperref[fig:6_plots]{Figure~\ref*{fig:6_plots}}) with the 'Guitar' or 'Piano' labels. Such spurious (mis-)classifications could easily be removed by setting a lower threshold for how many frames a positive or negative prediction has to last, and filtering the output accordingly. This should overall increase the quality of predictions.\\
 Additionally, some resampling methods could be used to improve predictions for underrepresented classes.
 
 
