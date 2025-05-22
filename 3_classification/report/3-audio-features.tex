@@ -7,9 +7,9 @@
 \subsection{Which subset of audio features did you select for your final classifier? Describe the selection process and the criteria you used to make your choice.}
 \label{sec:Audio Features:a}
 
-After reflecting on the results from section \hyperref[sec:Labeling Function:b]{1.), b.)}, we have decided to run our experiments on the 'embeddings' feature as well as the other three features mentioned in that section. Even though the results imply heavy correlations and possible redundancies to the other three features - especially considering the possible creation process of these audio embeddings -  this still offered a slight increase in performance for tests we ran on a small scale.
+After reflecting on the results from section \hyperref[sec:Labeling Function:b]{1.), b.)}, we have decided to run our experiments on the 'embeddings' feature as well as the other three features mentioned in that section. Even though the results imply heavy correlations and possible redundancies to the other three features - especially considering the possible creation process of these audio embeddings -  this still offered a slight increase in performance for tests we ran on a small scale. Performing all tests again using only the 'embeddings' feature would be computationally unfeasible, so we decided to play it safe.
 
-Unfortunately we were not able to include context frames in our experiments as we did earlier, since the computational complexity was already extremely high.
+Unfortunately we were not able to include context frames in our experiments as we did earlier, since the computational complexity was already extremely high and this would only have exaggerated the problem.
 
 
 \subsection{Did you apply any preprocessing to the audio features? If so, explain which techniques you used and why they were necessary.}

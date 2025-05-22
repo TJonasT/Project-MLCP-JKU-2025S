@@ -12,7 +12,7 @@
 
 In terms of performance metrics we decided to record - per class label - both the Balanced Accuracy as well as the F1-score of our models predictions. As single measures of performance of a model, we then used the macro-averaged Balanced Accuracy / F1-score (over the 58 class labels), like was shown in the tutorial session. 
 
-Balanced Accuracy, defined as the average recall per class (always binary in our case) obviously gives a more balanced performance metric, focusing on both the positive and negative classes. This metric was mainly included in order to be able to be able to compare the models to the baseline perfomance (see \hyperref[sec:Evaluation:b]{4.), b.)}).\\
+Balanced Accuracy, defined as the average recall per class (always binary in our case) obviously gives a more balanced performance metric, focusing on both the positive and negative classes. This metric was mainly included in order to be able to be able to compare the models to the baseline perfomance (see section \hyperref[sec:Evaluation:b]{4.), b.)}).\\
 The F1-score on the other hand is most likely a much better suited performance metric for this task. Representing the harmonic mean of precision and recall, it has a stronger focus on predictions of the positive class. This makes sense for our task, as one classifier essentially consists of 58 binary classifiers - one per class label - which needs to predict in which frames it is present, i.e. positive. Generally this metric will be much lower than the Balanced Accuracy.
 
 
@@ -21,7 +21,7 @@ The F1-score on the other hand is most likely a much better suited performance m
 
 In our case, the simple Majority-Class baseline classifier would always and for every label predict the negative class, since no single class-label is active in more than half of the frames in our dataset. This in turn would lead to a F1-score of 0 (since there are no True Positives). As already mentioned, in order to still be able to compare our models to the baseline we also recorded the Balanced Accuracy. Obviously, as the recall for the negative class would be 1 and for the positive class 0, our baseline Balanced Accuracy is 0.5.
 
-Considering the unavoidable noise and mislabelings in the data, we suspect the best possible performance one can achieve to be around an F1-score of 0.9 up to 0.95.
+Considering the unavoidable noise, inaccuracies and mislabelings in the data, we suspect the best possible performance one could ever achieve to be around an F1-score of 0.9 up to 0.95.
 
 
 
