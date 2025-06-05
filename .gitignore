@@ -5,6 +5,7 @@
 /.idea
 /MLPC2025_dataset
 /MLPC2025_classification
+/MLPC2025_test
 
 /2_data_exploration/.ipynb_checkpoints
 /2_data_exploration/MLPC2025_dataset
