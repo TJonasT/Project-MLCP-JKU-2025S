@@ -22,7 +22,14 @@
 #/4_challenge/report/
 /4_challenge/wandb
 
-
+/4_challenge/Spanring/data_files
+/4_challenge/Spanring/RNN
+/4_challenge/Spanring/LSTM
+/4_challenge/Spanring/lightning_logs
+/4_challenge/Spanring/mlpc2025-sed
+/4_challenge/Spanring/secret_test_set
+/4_challenge/Spanring/wandb
+/4_challenge/Spanring/__pycache__
 
 # makes an exception 
 #  - text files (notice), 
