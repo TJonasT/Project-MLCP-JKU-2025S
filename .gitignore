@@ -15,6 +15,14 @@
 /3_classification/MLPC2025_dataset
 #/3_classification/report/
 
+/4_challenge/.ipynb_checkpoints
+/4_challenge/__pycache__
+/4_challenge/mlpc2025-sed
+/4_challenge/MLPC2025_dataset
+#/4_challenge/report/
+/4_challenge/wandb
+
+
 
 # makes an exception 
 #  - text files (notice), 
