@@ -15,17 +15,16 @@
 /3_classification/MLPC2025_dataset
 #/3_classification/report/
 
-<<<<<<< Updated upstream
-/4_challenge/.ipynb_checkpoints
-/4_challenge/__pycache__
-/4_challenge/mlpc2025-sed
 /4_challenge/MLPC2025_dataset
-#/4_challenge/report/
-/4_challenge/wandb
+#/4_challenge/ReineckeFuchs/report/
 
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
+### Reinhard
+/4_challenge/ReineckeFuchs/.ipynb_checkpoints
+/4_challenge/ReineckeFuchs/__pycache__
+/4_challenge/ReineckeFuchs/mlpc2025-sed
+/4_challenge/ReineckeFuchs/wandb
+
+### Leo
 /4_challenge/Spanring/data_files
 /4_challenge/Spanring/RNN
 /4_challenge/Spanring/LSTM
@@ -34,19 +33,7 @@
 /4_challenge/Spanring/secret_test_set
 /4_challenge/Spanring/wandb
 /4_challenge/Spanring/__pycache__
-<<<<<<< Updated upstream
-=======
-=======
-/4_challenge/.ipynb_checkpoints
-/4_challenge/__pycache__
-/4_challenge/mlpc2025-sed
-/4_challenge/MLPC2025_dataset
-#/4_challenge/report/
-/4_challenge/wandb
 
->>>>>>> 5ebaacf8bc25385ced9656a5f431d5817797b538
-
->>>>>>> Stashed changes
 
 # makes an exception 
 #  - text files (notice), 
