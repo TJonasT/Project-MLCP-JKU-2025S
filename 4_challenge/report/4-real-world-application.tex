@@ -3,6 +3,28 @@
 \label{sec:real-world application}
 
 
+The question of whether our system could be deployed in a real-world application is not trivial and depends heavily on the specific use case. However, generally speaking, in our opinion, the current version of our system cannot be used as-is in a real world setting. This is primarily due to three reasons:
+
+1) Mismatch between Training Data and Real World Conditions
+The recordings we used in our dataset were collected from a publicly available source and created by individuals with no specific use case in mind. This means that important factors like sound/recording quality and individual sound events will almost certainly differ between our dataset and a real-world setting. As a result, the network is not trained for its actual task. Additionally, the predicted accuracy—based on our test set—will likely be highly overoptimistic.
+
+2) Lack of Task specific Data
+The dataset was intentionally designed to be very general, which is beneficial for research but a weakness when it comes to real-world application. Depending on the task, the model would likely have to make more distinct differentiations (e.g., a car starting vs. a car driving vs. a car stopping), while other samples may not be needed at all—like the sound of a bee, when dealing with neighborhood noise infractions (I don't want to meet the bee that can rival a car's volume).
+
+3) Risk of Implicit Bias in the Text Annotations
+The annotations for the dataset were created by a group of people with very similar cultural backgrounds. This almost certainly introduces several biases. In real-world settings, sound perception can differ significantly between individuals, which would affect the system’s usefulness.
+
+
+
+If we want to implement our system in a real-world application, we would have to make some changes. The main issue lies with the dataset. Assuming we want our model to perform as well as it can, we would need to collect data in the same way we expect future, unseen data to be recorded—preferably even at a similar location.\n
+
+Furthermore, our model would benefit from more refined sample selection. Eliminating unnecessary classes and adding more nuanced, region specific ones.
+
+\n Lastly, we should consider involving a more diverse group of data engineers to label the training data, to minimize the risks of implicit bias.
+
+\n
+
+Overall our system is a solid foundation on which more use case specific model could be trained.
 
 
 \subsection{In your opinion, which aspects of the project or your system would need to be adapted to fulfill possible real-world requirements?}
