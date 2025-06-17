@@ -2,17 +2,19 @@
 \section{Describe your evaluation setup}
 \label{sec:Describe your evaluation setup}
 
-
-
-
 \subsection{How did you split the development dataset (provided in phase three of the project) into a training and evaluation set while avoiding information leakage?}
 \label{sec:Describe:a}
-
-
+Since this time around, we are going to make predictions for whole audio files at once (as opposed to individual snippets), we do not need to be as careful when designing the datasplit as before, since frames of the same audio file will obviously cannot leak into other files.
+\newline
+So we simply split our 8230 files in total into training, valdiation and test sets, containing 60\%, 20\% and 20\% of the data respectively.
 
 
 \subsection{Establish and describe a naive baseline system (i.e., a baseline without a classifier). How much cost can we expect from it?}
 \label{sec:Describe:b}
+Like we already discussed in our last report, a simple naive baseline system would be one which predicts the majority class-label for each of the 10 classes we want to make predictions for. As already established, for this task this would result in classifier predicting the absence of each class for every frame, as each class is absent in more frames than it is present.
+\newline
+This baseline system would obviously make no False Positive (FP) predictions, but all possible False Negative (FN) predictions. Since in our specific cost scenario, False Negatives always have a higher associated cost than their corresponding False Positives per class, the cost will naturally be quite high. In particular (as has also been shown in the tutorial notebook), it produces a total average cost of 108.8553 per minute of audio on the validation data. 
+
 
 
 
