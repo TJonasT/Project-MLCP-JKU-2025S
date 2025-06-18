@@ -8,7 +8,45 @@ Unlike Recurrent Neural Networks (RNNs), assuming proper dilation settings, they
 
 Our network takes in the whole F$\times$D array of an audio file, with F representing the number of frames, and D the number of feature (audio embedding) dimensions. The output of the model is then of shape F$\times$10, one probability for each class per frame.
 
-A more detailed description of our architecture: The input is first passed through a Convolutional Feature Extractor block, whose main job is to downsample the D input features into a more compact representation useful for predicting the different classes. In our case, we end up with a F$\times$128 array. For our actual TCN, we then use 4 residual blocks, with dilations of $2^0, \dots, 2^3$ and kernel size of 3. Throughout our model, we also added several BatchNorm and Dropout layers.
+A more detailed description of our architecture: The input is first passed through a Convolutional Feature Extractor block, whose main job is to downsample the D input features into a more compact representation useful for predicting the different classes. In our case, we end up with a F$\times$128 array. For our actual TCN, we then use 4 residual blocks, with dilations of $2^0, \dots, 2^3$ and kernel size of 3. Throughout our model, we also added several BatchNorm and Dropout layers. A more detailed description can be seen in \hyperref[tab:architecture]{Table \ref{tab:architecture}}.
+
+\begin{table}[h]
+\centering
+\begin{adjustbox}{width=\textwidth}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Layer} & \textbf{Input Shape} & \textbf{Output Shape} & \textbf{Details} \\
+\hline
+\multicolumn{4}{|c|}{\textbf{Convolutional Feature Extractor}} \\
+\hline
+Input & $[B, F, D]$ & $[B, F, D]$ & Raw frame-level features \\
+\hline
+Transpose & $[B, D, F]$ & $[B, D, F]$ & Prepare for Conv1D over embedding axis \\
+\hline
+Conv1D + BN + ReLU & $[B, D, F]$ & $[B, C, F]$ & $1^{\text{st}}$ Conv1D block, kernel size = 3, padding = 1 \\
+\hline
+Dropout & $[B, C, F]$ & $[B, C, F]$ & Dropout rate = 0.2 \\
+\hline
+Conv1D + BN + ReLU & $[B, C, F]$ & $[B, C, F]$ & $2^{\text{nd}}$ Conv1D block, kernel size = 3, padding = 1 \\
+\hline
+\multicolumn{4}{|c|}{\textbf{TCN (Temporal Convolutional Network)}} \\
+\hline
+ResidualBlock (× num\_blocks) & $[B, C, T]$ & $[B, C, T]$ & Each block: 2 × Conv1D + BN + ReLU + Dropout = 0.2, dilations = $2^i$ \\
+\hline
+Conv1D (output layer) & $[B, C, T]$ & $[B, N, T]$ & Kernel size = 1 \\
+\hline
+Transpose & $[B, N, T]$ & $[B, T, N]$ & Final output for framewise classification \\
+\hline
+\end{tabular}
+\end{adjustbox}
+\captionsetup{justification=centering}
+\caption{Architecture of our network, \\ B: BatchSize, F: Number of Frames, D: Input Dimensionality, C: Reduced Dimensionality, N: Number of Classes}
+\label{tab:architecture}
+\end{table}
+
+Our model is trained on the training data. After each epoch, it's performance on the validation data is recorded to keep track of and save the best version of the model. We use Binary Cross Entropy as our loss function, a batch size of 64, a learning rate of 1e-4 as well as the Adam optimizer (these setting were kept from the tutorial notebook).
+
+We want to take a moment to point out that our model is pretty lightweight with around 750K parameters, especially when compared to something like the BiGRU used in the tutorial, which has around 20 Million and performs worse. This is of course not part of the task, but noteworthy anyways and should be considered when implementing a system like this.
 
 \subsection{How did you threshold and combine predictions to derive a label for the 1.2-second segments? Describe any heuristics or post-processing strategies used.}
 \label{sec:Build:a}
@@ -20,6 +58,8 @@ Then there is the problem of combining the predictions made for all frames into 
 \subsection{What strategies did you apply to minimize the task-specific cost function?}
 \label{sec:Build:b}
 In order to minimize our task specific cost function, which assigns different costs to False Negatives (FN) and False Positives (FP) for each class, we created a custom Binary-Cross-Entropy (BCE) Loss function. It computes the regular BCE Loss for each class, and then by looking at the targets, scales each entry by either it's FP (if the target is 1) or FN (if the target is 0) cost. Doing this improved performance by quite a bit.
+\newline
+Using this custom loss already lowered the lowest cost on the validation data from 43.17488 to 40.1256.
 
 
 
@@ -28,8 +68,4 @@ In order to minimize our task specific cost function, which assigns different co
 \label{sec:Build:c}
 Yes, our simple SED system does outperform the naive baseline by quit a bit when it comes to our specific cost function (and likely most other metrics as well). This is not really impressive however, as the costs for False Negatives are higher than for False Positives, so most methods which at least sometimes predict a positive label should perform better.
 \newline
-Currently, our SED system achieves a total average cost of 43.17488 on the validation data.
-
-
-
-
+In the current state, our SED system achieves a total average cost of about 40.1256 on the validation data.
