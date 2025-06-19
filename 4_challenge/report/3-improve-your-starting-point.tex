@@ -50,7 +50,14 @@ Tuned Parameters & 39.8219 \\
 \end{table}
 As can be seen, the most impactful strategy seems to be the one of using Variable Thresholds. Using AdamW instead of Adam also resulted in a (probably insignificant) performance increase. Post-processing the model outputs did actually decrease performance despite our expectations, so our model does not seem to produce too many false spurious positive predictions.
 
-We also tried applying different combinations of these strategies. Interestingly, none but one of them superseded using only Variable Thresholds.  The best one we found was using Variable Thresholds in combination with Tuned Parameters, which yielded a total average cost on the validation data of 38.1383. No significant improvement, but at least not worse.
+We also tried applying different combinations of these strategies. Interestingly, none but one of them superseded using only Variable Thresholds.  The best one we found was using Variable Thresholds in combination with Tuned Parameters, which yielded a total average cost on the validation data of 38.1383 (Figure~\ref{fig:Total Validation Cost Comparison}). No significant improvement, but at least not worse.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Total Validation Cost Comparison.jpg}
+    \caption{Total validation cost comparison between base TCN and TCN with de improvement strategies.}
+    \label{fig:Total Validation Cost Comparison}
+\end{figure}
 
 So we decided on the mentioned combination for our final model. This model now yields an unbiased cost estimate on the test dataset of 41.0388.
 
