@@ -70,6 +70,8 @@ from pytorch_lightning.callbacks import (
 from pytorch_lightning.loggers import WandbLogger
 from tqdm import tqdm
 from huggingface_hub import snapshot_download, hf_hub_download
+from transformers import PretrainedConfig, PreTrainedModel
+from transformers.utils.hub import cached_file
 import zipfile
 import shutil
 
@@ -671,6 +673,133 @@ print("DataModule batch -> X:", X_batch.shape,
       "\nY:", Y_batch.shape,
       "\nlengths:", len_batch,
       "\nfilenames:", filenames[:3], "...")
+
+
+
+
+# ### Cnn8Rnn
+
+class Cnn8RnnConfig(PretrainedConfig):
+
+    def __init__(
+        self,
+        classes_num: int = len(TARGET_CLASSES),
+        **kwargs
+    ):
+        self.classes_num = classes_num
+        super().__init__(**kwargs)
+
+
+# In[ ]:
+
+
+class Cnn8RnnClassifier(nn.Module):
+    """
+    Bidirectional GRU classifier with a linear output layer.
+
+    Args:
+        input_dim: Input feature dimension (D).
+        hidden_dim: Hidden size per GRU direction.
+        num_layers: Number of stacked GRU layers.
+        num_classes: Number of output classes (C).
+
+    Input:
+        x: Tensor of shape (B, T, D) — batch of padded sequences.
+        lengths: Tensor of shape (B,) — actual lengths before padding.
+
+    Returns:
+        logits: Tensor of shape (B, T, C) — class scores for each time step.
+    """
+
+class Cnn8RnnClassifier(PreTrainedModel):
+
+    config_class = Cnn8RnnConfig
+
+    def __init__(self, config: Cnn8RnnConfig):
+        super().__init__(config)
+        self.config = config
+
+
+        self.bn0 = nn.BatchNorm2d(64)
+
+        self.conv_block1 = ConvBlock(in_channels=1, out_channels=64)
+        self.conv_block2 = ConvBlock(in_channels=64, out_channels=128)
+        self.conv_block3 = ConvBlock(in_channels=128, out_channels=256)
+        self.conv_block4 = ConvBlock(in_channels=256, out_channels=512)
+
+        self.fc1 = nn.Linear(512, 512, bias=True)
+        self.rnn = nn.GRU(512, 256, bidirectional=True, batch_first=True)
+        self.fc_audioset = nn.Linear(512, config.classes_num, bias=True)
+        self.temporal_pooling = LinearSoftmax()
+        
+        self.init_weight()
+
+    def init_weight(self):
+        init_bn(self.bn0)
+        init_layer(self.fc1)
+        init_layer(self.fc_audioset)
+
+    def forward(self, waveform):
+        x = x.transpose(1, 2)
+        x = x.unsqueeze(1)
+
+        frames_num = x.shape[2]
+        
+        x = x.transpose(1, 3)
+        x = self.bn0(x)
+        x = x.transpose(1, 3)
+
+        x = self.conv_block1(x, pool_size=(2, 2), pool_type='avg+max')
+        x = F.dropout(x, p=0.2, training=self.training)
+        x = self.conv_block2(x, pool_size=(2, 2), pool_type='avg+max')
+        x = F.dropout(x, p=0.2, training=self.training)
+        x = self.conv_block3(x, pool_size=(1, 2), pool_type='avg+max')
+        x = F.dropout(x, p=0.2, training=self.training)
+        x = self.conv_block4(x, pool_size=(1, 2), pool_type='avg+max')
+        x = F.dropout(x, p=0.2, training=self.training) # (batch_size, 256, time_steps / 4, mel_bins / 16)
+        x = torch.mean(x, dim=3)
+        
+        x = x.transpose(1, 2)
+        x = F.dropout(x, p=0.5, training=self.training)
+        x = F.relu_(self.fc1(x))
+        x, _  = self.rnn(x)
+        segmentwise_output = torch.sigmoid(self.fc_audioset(x)).clamp(1e-7, 1.)
+        clipwise_output = self.temporal_pooling(segmentwise_output)
+
+        # Get framewise output
+        framewise_output = interpolate(segmentwise_output,
+                                        self.interpolate_ratio)
+        framewise_output = pad_framewise_output(framewise_output, frames_num)
+
+        output_dict = {
+            'framewise_output': framewise_output,
+            'clipwise_output': clipwise_output
+        }
+
+        return output_dict
+    
+
+    def save_pretrained(self, save_directory, *args, **kwargs):
+        super().save_pretrained(save_directory, *args, **kwargs)
+        with open(os.path.join(save_directory, "classes.txt"), "w") as f:
+            for class_name in self.classes:
+                f.write(class_name + "\n")
+
+
+    @classmethod
+    def from_pretrained(cls, pretrained_model_name_or_path, *model_args,
+                        **kwargs):
+        model = super().from_pretrained(pretrained_model_name_or_path,
+                                        *model_args, **kwargs)
+        class_file = cached_file(pretrained_model_name_or_path, "classes.txt")
+        with open(class_file, "r") as f:
+            model.classes = [l.strip() for l in f]
+        return model
+
+
+
+
+
 
 
 # ### Bidirectional RNN

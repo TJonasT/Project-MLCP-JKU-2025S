@@ -1,0 +1,295 @@
+
+####################################################################################################
+####################################################################################################
+RNN
+####################################################################################################
+####################################################################################################
+class FramewiseAudioClassifier(nn.Module) : , conv_features=128,
+torch.nn.BCEWithLogitsLoss
+
+┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name      ┃ Type              ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model     │ BiGRUClassifier   │ 29.9 M │ train │
+│ 1 │ criterion │ BCEWithLogitsLoss │      0 │ train │
+└───┴───────────┴───────────────────┴────────┴───────┘
+Trainable params: 29.9 M
+Non-trainable params: 0
+Total params: 29.9 M
+Total estimated model params size (MB): 119
+Modules in train mode: 4
+Modules in eval mode: 0
+
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃         Test metric         ┃        DataLoader 0         ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│     test/Chainsaw_bacc      │     0.8721192479133606      │
+│      test/Chainsaw_f1       │     0.7724399566650391      │
+│   test/Chainsaw_precision   │     0.8011363744735718      │
+│    test/Chainsaw_recall     │     0.7457282543182373      │
+│     test/Dog Bark_bacc      │      0.861828625202179      │
+│      test/Dog Bark_f1       │     0.7484105229377747      │
+│   test/Dog Bark_precision   │     0.7698318362236023      │
+│    test/Dog Bark_recall     │     0.7281491160392761      │
+│     test/Horn Honk_bacc     │     0.7222718000411987      │
+│      test/Horn Honk_f1      │     0.5258523225784302      │
+│  test/Horn Honk_precision   │     0.6354514956474304      │
+│    test/Horn Honk_recall    │     0.44849786162376404     │
+│    test/Jackhammer_bacc     │     0.6314405202865601      │
+│     test/Jackhammer_f1      │     0.3572433292865753      │
+│  test/Jackhammer_precision  │     0.5497835278511047      │
+│   test/Jackhammer_recall    │     0.2645833194255829      │
+│    test/Lawn Mower_bacc     │     0.6386604905128479      │
+│     test/Lawn Mower_f1      │     0.4108474552631378      │
+│  test/Lawn Mower_precision  │     0.7880364060401917      │
+│   test/Lawn Mower_recall    │     0.27785420417785645     │
+│    test/Power Drill_bacc    │     0.6910289525985718      │
+│     test/Power Drill_f1     │     0.3785594701766968      │
+│ test/Power Drill_precision  │     0.3686239719390869      │
+│   test/Power Drill_recall   │      0.389045387506485      │
+│   test/Rooster Crow_bacc    │      0.607758641242981      │
+│    test/Rooster Crow_f1     │     0.3546099364757538      │
+│ test/Rooster Crow_precision │             1.0             │
+│  test/Rooster Crow_recall   │     0.21551723778247833     │
+│       test/Shout_bacc       │     0.6613853573799133      │
+│        test/Shout_f1        │     0.38064858317375183     │
+│    test/Shout_precision     │      0.449635773897171      │
+│      test/Shout_recall      │     0.33001473546028137     │
+│       test/Siren_bacc       │     0.8666971325874329      │
+│        test/Siren_f1        │     0.7834993004798889      │
+│    test/Siren_precision     │      0.836248517036438      │
+│      test/Siren_recall      │     0.7370099425315857      │
+│      test/Speech_bacc       │      0.866209864616394      │
+│       test/Speech_f1        │     0.7807399034500122      │
+│    test/Speech_precision    │     0.8118044137954712      │
+│     test/Speech_recall      │     0.7519652247428894      │
+│     test/cost/Chainsaw      │     1.7852609157562256      │
+│     test/cost/Dog Bark      │     1.4535990953445435      │
+│     test/cost/Horn Honk     │      6.879205226898193      │
+│    test/cost/Jackhammer     │      4.636917591094971      │
+│    test/cost/Lawn Mower     │     3.9132919311523438      │
+│    test/cost/Power Drill    │      5.893741130828857      │
+│   test/cost/Rooster Crow    │     0.33324870467185974     │
+│       test/cost/Shout       │      7.033134460449219      │
+│       test/cost/Siren       │      5.450996398925781      │
+│      test/cost/Speech       │      7.161673069000244      │
+│          test/loss          │     0.37904077768325806     │
+│       test/total_cost       │      44.54106903076172      │
+└─────────────────────────────┴─────────────────────────────┘
+
+| Class        |   Baseline |   Logistic Regression |   RNN |
+|--------------|------------|-----------------------|-------|
+| Speech       |      27.05 |                  7.38 |  7.16 |
+| Shout        |       9.92 |                  8.38 |  7.03 |
+| Chainsaw     |       6.05 |                  1.72 |  1.79 |
+| Jackhammer   |       6.36 |                  4.9  |  4.64 |
+| Lawn Mower   |       5.36 |                  3.6  |  3.91 |
+| Power Drill  |       8.24 |                  8.6  |  5.89 |
+| Dog Bark     |       6.16 |                  1.99 |  1.45 |
+| Rooster Crow |       0.48 |                  0.17 |  0.33 |
+| Horn Honk    |      13.12 |                  8.87 |  6.88 |
+| Siren        |      18.76 |                  5.43 |  5.45 |
+| TOTAL        |     101.47 |                 51.04 | 44.54 |
+
+
+
+class FramewiseAudioClassifier(nn.Module) : , conv_features=128,
+torch.nn.BCEWithLogitsLoss
+
+┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name      ┃ Type                      ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model     │ BiGRUClassifier           │ 67.7 M │ train │
+│ 1 │ criterion │ WeightedBCEWithLogitsLoss │      0 │ train │
+└───┴───────────┴───────────────────────────┴────────┴───────┘
+Trainable params: 67.7 M                                                                                           
+Non-trainable params: 0                                                                                            
+Total params: 67.7 M                                                                                               
+Total estimated model params size (MB): 270                                                                        
+Modules in train mode: 4                                                                                           
+Modules in eval mode: 0
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃         Test metric         ┃        DataLoader 0         ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│     test/Chainsaw_bacc      │     0.8894338607788086      │
+│      test/Chainsaw_f1       │     0.8173097372055054      │
+│   test/Chainsaw_precision   │     0.8584863543510437      │
+│    test/Chainsaw_recall     │     0.7799023389816284      │
+│     test/Dog Bark_bacc      │     0.8927432298660278      │
+│      test/Dog Bark_f1       │     0.7096635103225708      │
+│   test/Dog Bark_precision   │     0.6410887837409973      │
+│    test/Dog Bark_recall     │     0.7946658134460449      │
+│     test/Horn Honk_bacc     │     0.7874148488044739      │
+│      test/Horn Honk_f1      │     0.45646941661834717     │
+│  test/Horn Honk_precision   │     0.37217485904693604     │
+│    test/Horn Honk_recall    │     0.5901287794113159      │
+│    test/Jackhammer_bacc     │     0.7673762440681458      │
+│     test/Jackhammer_f1      │     0.42052605748176575     │
+│  test/Jackhammer_precision  │     0.34316566586494446     │
+│   test/Jackhammer_recall    │     0.5429166555404663      │
+│    test/Lawn Mower_bacc     │     0.6996370553970337      │
+│     test/Lawn Mower_f1      │     0.5196428298950195      │
+│  test/Lawn Mower_precision  │     0.7404580116271973      │
+│   test/Lawn Mower_recall    │     0.4002751111984253      │
+│    test/Power Drill_bacc    │      0.823453426361084      │
+│     test/Power Drill_f1     │     0.3353920578956604      │
+│ test/Power Drill_precision  │     0.2235306352376938      │
+│   test/Power Drill_recall   │      0.67136150598526       │
+│   test/Rooster Crow_bacc    │     0.7995526790618896      │
+│    test/Rooster Crow_f1     │     0.7393617033958435      │
+│ test/Rooster Crow_precision │     0.9652777910232544      │
+│  test/Rooster Crow_recall   │     0.5991379022598267      │
+│       test/Shout_bacc       │     0.7728712558746338      │
+│        test/Shout_f1        │     0.4403630197048187      │
+│    test/Shout_precision     │     0.3613475263118744      │
+│      test/Shout_recall      │     0.5636062026023865      │
+│       test/Siren_bacc       │     0.9129660129547119      │
+│        test/Siren_f1        │     0.7679324746131897      │
+│    test/Siren_precision     │     0.7112596035003662      │
+│      test/Siren_recall      │     0.8344185948371887      │
+│      test/Speech_bacc       │     0.9161585569381714      │
+│       test/Speech_f1        │     0.7533105611801147      │
+│    test/Speech_precision    │      0.656132698059082      │
+│     test/Speech_recall      │     0.8842783570289612      │
+│     test/cost/Chainsaw      │      1.461533546447754      │
+│     test/cost/Dog Bark      │     1.3552113771438599      │
+│     test/cost/Horn Honk     │      6.941094398498535      │
+│    test/cost/Jackhammer     │      3.875206232070923      │
+│    test/cost/Lawn Mower     │      3.403897523880005      │
+│    test/cost/Power Drill    │      6.222229480743408      │
+│   test/cost/Rooster Crow    │     0.15710295736789703     │
+│       test/cost/Shout       │      6.065126419067383      │
+│       test/cost/Siren       │     4.4274468421936035      │
+│      test/cost/Speech       │     5.1891584396362305      │
+│          test/loss          │     2.4152188301086426      │
+│       test/total_cost       │      39.09800720214844      │
+└─────────────────────────────┴─────────────────────────────┘
+
+
+
+####################################################################################################
+####################################################################################################
+TCN
+####################################################################################################
+####################################################################################################
+class FramewiseAudioClassifier(nn.Module) : , conv_features=128,
+torch.nn.BCEWithLogitsLoss
+
+┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name      ┃ Type                      ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model     │ FramewiseAudioClassifier  │  742 K │ train │
+│ 1 │ criterion │ WeightedBCEWithLogitsLoss │      0 │ train │
+└───┴───────────┴───────────────────────────┴────────┴───────┘
+Trainable params: 742 K
+Non-trainable params: 0
+Total params: 742 K
+Total estimated model params size (MB): 2
+Modules in train mode: 50
+Modules in eval mode: 0
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃        Test metric        ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│      test/Shout_bacc      │    0.7087956666946411     │
+│       test/Shout_f1       │    0.4465044438838959     │
+│   test/Shout_precision    │    0.46877533197402954    │
+│     test/Shout_recall     │    0.42625367641448975    │
+│    test/cost/Chainsaw     │    1.2568236589431763     │
+│    test/cost/Dog Bark     │    1.4567729234695435     │
+│    test/cost/Horn Honk    │     6.898248195648193     │
+│   test/cost/Jackhammer    │     4.751174449920654     │
+│   test/cost/Lawn Mower    │    3.8942489624023438     │
+│   test/cost/Power Drill   │     5.474800109863281     │
+│  test/cost/Rooster Crow   │    0.1507553607225418     │
+│      test/cost/Shout      │     6.325377464294434     │
+│      test/cost/Siren      │     5.379586219787598     │
+│     test/cost/Speech      │     6.720515251159668     │
+│         test/loss         │    0.4499092400074005     │
+│      test/total_cost      │     42.30830383300781     │
+└───────────────────────────┴───────────────────────────┘
+
+
+
+class FramewiseAudioClassifier(nn.Module) : , conv_features=128,
+torch.nn.WeightedBCEWithLogitsLoss
+┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name      ┃ Type                      ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model     │ FramewiseAudioClassifier  │  742 K │ train │
+│ 1 │ criterion │ WeightedBCEWithLogitsLoss │      0 │ train │
+└───┴───────────┴───────────────────────────┴────────┴───────┘
+Trainable params: 742 K
+Non-trainable params: 0
+Total params: 742 K
+Total estimated model params size (MB): 2
+Modules in train mode: 50
+Modules in eval mode: 0
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃        Test metric        ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│      test/Shout_bacc      │    0.8132359981536865     │
+│       test/Shout_f1       │     0.41300168633461      │
+│   test/Shout_precision    │    0.30188196897506714    │
+│     test/Shout_recall     │     0.653576672077179     │
+│    test/cost/Chainsaw     │     1.790021538734436     │
+│    test/cost/Dog Bark     │     1.553573727607727     │
+│    test/cost/Horn Honk    │     6.488828182220459     │
+│   test/cost/Jackhammer    │     3.827599287033081     │
+│   test/cost/Lawn Mower    │     3.80379581451416      │
+│   test/cost/Power Drill   │     6.460264205932617     │
+│  test/cost/Rooster Crow   │    0.4681350886821747     │
+│      test/cost/Shout      │     6.328551292419434     │
+│      test/cost/Siren      │     4.375079154968262     │
+│     test/cost/Speech      │     5.090770721435547     │
+│         test/loss         │     2.807501792907715     │
+│      test/total_cost      │     40.18661880493164     │
+└───────────────────────────┴───────────────────────────┘
+
+
+
+class FramewiseAudioClassifier(nn.Module) : , conv_features=256,
+torch.nn.WeightedBCEWithLogitsLoss
+
+┏━━━┳━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━┓
+┃   ┃ Name      ┃ Type                      ┃ Params ┃ Mode  ┃
+┡━━━╇━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━┩
+│ 0 │ model     │ FramewiseAudioClassifier  │  2.4 M │ train │
+│ 1 │ criterion │ WeightedBCEWithLogitsLoss │      0 │ train │
+└───┴───────────┴───────────────────────────┴────────┴───────┘
+Trainable params: 2.4 M
+Non-trainable params: 0
+Total params: 2.4 M
+Total estimated model params size (MB): 9
+Modules in train mode: 50
+Modules in eval mode: 0
+
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+┃        Test metric        ┃       DataLoader 0        ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━┩
+│      test/Shout_bacc      │    0.8491030931472778     │
+│       test/Shout_f1       │    0.3774546682834625     │
+│   test/Shout_precision    │    0.25368019938468933    │
+│     test/Shout_recall     │    0.7370944023132324     │
+│    test/cost/Chainsaw     │     1.704329013824463     │
+│    test/cost/Dog Bark     │     1.309191346168518     │
+│    test/cost/Horn Honk    │     6.24603271484375      │
+│   test/cost/Jackhammer    │     4.018027305603027     │
+│   test/cost/Lawn Mower    │     4.741652965545654     │
+│   test/cost/Power Drill   │     6.77923059463501      │
+│  test/cost/Rooster Crow   │    0.14440776407718658    │
+│      test/cost/Shout      │     6.693538188934326     │
+│      test/cost/Siren      │    4.6702423095703125     │
+│     test/cost/Speech      │    5.1701154708862305     │
+│         test/loss         │    2.5656580924987793     │
+│      test/total_cost      │    41.476768493652344     │
+└───────────────────────────┴───────────────────────────┘
+
+
+
+
+
+

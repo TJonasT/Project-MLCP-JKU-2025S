@@ -5,7 +5,8 @@ from torch.utils.data import Dataset, DataLoader
 from torch.nn.utils.rnn import pad_sequence
 import pytorch_lightning as pl
 
-
+NUM_WORKERS = 6  # number of workers (maximum number of workers = CPU cores - 1)
+BATCH_SIZE = 128
 
 class SequenceDataset(Dataset):
     """
@@ -70,8 +71,8 @@ class SEDDataModule(pl.LightningDataModule):
                  X_val,   Y_val,   val_files,
                  X_test,  Y_test,  test_files,
                  classes,
-                 batch_size=32,
-                 num_workers=1):
+                 batch_size=BATCH_SIZE,
+                 num_workers=NUM_WORKERS):
         super().__init__()
         self.X_train, self.Y_train, self.train_files = X_train, Y_train, train_files
         self.X_val,   self.Y_val,   self.val_files   = X_val,   Y_val,   val_files
