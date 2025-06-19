@@ -21,8 +21,10 @@
 ### Reinhard
 /4_challenge/ReineckeFuchs/.ipynb_checkpoints
 /4_challenge/ReineckeFuchs/__pycache__
+/4_challenge/ReineckeFuchs/lightning_logs
 /4_challenge/ReineckeFuchs/mlpc2025-sed
 /4_challenge/ReineckeFuchs/wandb
+/4_challenge/ReineckeFuchs/PretrainedSED-main
 
 ### Leo
 /4_challenge/Spanring/data_files
