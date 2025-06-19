@@ -6,6 +6,8 @@
 \label{sec:Describe:a}
 Since this time around, we are going to make predictions for whole audio files at once (as opposed to individual snippets), we do not need to be as careful when designing the datasplit as before, since frames of the same audio file will obviously cannot leak into other files.
 \newline
+We have tried to keep the distribution of frames in the individual sets the same. This requires prior analysis of the audio files in order to create a density distribution. As this represents a considerable effort and we could not identify any significant advantage, we did not do this in this task.
+\newline
 So we simply split our 8230 files in total into training, valdiation and test sets, containing 60\%, 20\% and 20\% of the data respectively.
 
 

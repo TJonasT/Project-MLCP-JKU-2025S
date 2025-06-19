@@ -10,9 +10,9 @@
 
 \textbf{Strategy 1: Using variable thresholds for the different classes}
 \newline
-Using a simple globally constant threshold for each class does work (as has been shown in \hyperref[sec:Build a simple SED system]{2.)}), but most likely is not optimal. Factors like the heavy class imbalances or the models sensitivity to the different classes are completely ignored this way. Additionally, the different costs associated with each class also are not accounted for.
+Using a simple globally constant threshold for each class does work (as has been shown in \hyperref[sec:Build a simple SED system]{2.)} ), but most likely is not optimal. Factors like the heavy class imbalances or the models sensitivity to the different classes are completely ignored this way. Additionally, the different costs associated with each class also are not accounted for.
 \newline
-For this reason, we wanted to tune the thresholds for each of the 10 classes as well. For each class, our threshold searchspace consists of values from 0 to 1, in intervals of 0.05. After each validation epoch, we tune the thresholds for each class by picking the one which maximises the following utility function: $U = TP - cost_{FP}FP - cost_{FN}FN$.
+For this reason, we wanted to tune the thresholds for each of the 10 classes as well. For each class, our threshold search space consists of values from 0 to 1, in intervals of 0.05. After each validation epoch, we tune the thresholds for each class by picking the one which maximises the following utility function: $U = TP - cost_{FP}FP - cost_{FN}FN$.
 
 \textbf{Strategy 2: Post-processing model outputs before aggregation}
 \newline
