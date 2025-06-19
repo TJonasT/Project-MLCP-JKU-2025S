@@ -59,7 +59,7 @@ We also tried applying different combinations of these strategies. Interestingly
     \label{fig:Total Validation Cost Comparison}
 \end{figure}
 
-So we decided on the mentioned combination for our final model. This model now yields an unbiased cost estimate on the test dataset of 41.0388.
+So we decided on the mentioned combination for our final model. This model now yields an unbiased cost estimate on the test dataset of 41.038 \footnote{Additional improvement strategies were explored, as can be seen in the following link: \url{https://wandb.ai/mlpc2025/mlpc2025_challenge?nw=nwusertylernavarro}.}
 
 We then retrained our final model on the entirety of the provided data for 6 epochs (as the optimum for the best model on the validation data was achieved after 6 epochs) in order to create our predictions for the secret customer test set, utilizing the thresholds determined by the model trained on less of the data.
 
